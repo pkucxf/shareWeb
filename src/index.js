@@ -10,15 +10,16 @@ import $ from 'jquery';
 import Config from './config';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-datepicker/dist/react-datepicker.css'
-import './less/adminManage.less';
+import './less/share.less';
 import GlobalStore from './stores/GlobalStore';
 import App from './containers/App';
 import Bundle from './bundle.js';
 
 import LoginContainer2 from 'bundle-loader?lazy&name=app-[name]!./containers/adminManage/Login';
+import HomeContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/Home';
 
 const Login2  = (props) => (<Bundle load={LoginContainer2} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
-
+const Home  = (props) => (<Bundle load={HomeContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 
 const requireAuth = (nextState, replace, next) => {
   //切换路由时初始化环境
@@ -46,6 +47,7 @@ ReactDom.render(
   <Router history={hashHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={Login2}/>
+        <Route path='/home' component={Home}/>
 
     </Route>
   </Router>,
