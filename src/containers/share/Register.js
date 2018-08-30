@@ -5,11 +5,9 @@ import _ from  'lodash';
 import Util from '../../common/utils';
 import {Button,Modal} from 'react-bootstrap';
 import localforage from 'localforage';
-import Banner from '../../components/share/Banner';
-import Nav from '../../components/share/Nav';
 
 @observer
-export default class Home extends React.Component {
+export default class Register extends React.Component {
     constructor(props) {
         super(props);
         this.state ={
@@ -24,11 +22,9 @@ export default class Home extends React.Component {
     render(){
         return(
             <div className="share-box">
-                <Nav/>
-                <Banner />
 
             </div>
-        )   
+        )
 
     }
 
