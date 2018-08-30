@@ -17,9 +17,11 @@ import Bundle from './bundle.js';
 
 import LoginContainer2 from 'bundle-loader?lazy&name=app-[name]!./containers/adminManage/Login';
 import HomeContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/Home';
+import RegisterContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/Register';
 
 const Login2  = (props) => (<Bundle load={LoginContainer2} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const Home  = (props) => (<Bundle load={HomeContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
+const Register  = (props) => (<Bundle load={RegisterContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 
 const requireAuth = (nextState, replace, next) => {
   //切换路由时初始化环境
@@ -48,7 +50,7 @@ ReactDom.render(
     <Route path="/" component={App}>
       <IndexRoute component={Login2}/>
         <Route path='/home' component={Home}/>
-
+        <Route path='/register' component={Register}/>
     </Route>
   </Router>,
   document.getElementById('root')
