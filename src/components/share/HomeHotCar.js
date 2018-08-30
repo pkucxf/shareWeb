@@ -41,14 +41,14 @@ export default class HomeHotCar extends React.Component {
                         <img src="http://www.1hai.cn/Content/Index/images/hotcar_banner.jpg"></img>
                     </div>
                     <div className="fl">
-                        <div className="">
+                        <div className="fl share-hot-list">
                             <div>
-                                <span> hot</span>
-                                <div>
-                                    <span>北京奔驰S400</span>
-                                    <i>时尚、奢侈、豪华</i>
+                                <span className="fl"> hot</span>
+                                <div className="share-hot-detail fl">
+                                    <h4>北京奔驰S400</h4>
+                                    <h6> 时尚、奢侈、豪华</h6>
                                 </div>
-                                <div>
+                                <div className="fr">
                                     <span>￥500.00</span>/天
                                 </div>
                             </div>
