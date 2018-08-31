@@ -25,7 +25,7 @@ export default class HomeHotCar extends React.Component {
     render(){
 
         return(
-            <div className="share-hot w1180">
+            <div className="share-hot w1180 mb30">
                 <div className="share-hot-top">
                     <div className="share-hot-title fl">
                         热租车型
