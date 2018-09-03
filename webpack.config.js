@@ -76,7 +76,7 @@ plugins.push(
   }),
   new ExtractTextPlugin("[name]-[hash].css"),
   new HtmlWebpackPlugin({
-    title:"index-张彤川",
+    title:"index",
     template:"./index.html",
     // chunks:['index'],
     filename:'index.html'

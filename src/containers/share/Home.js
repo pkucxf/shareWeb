@@ -8,6 +8,7 @@ import localforage from 'localforage';
 import Banner from '../../components/share/Banner';
 import Nav from '../../components/share/Nav';
 import HotCar from  '../../components/share/HomeHotCar';
+import HomeActive from  '../../components/share/HomeActive';
 
 @observer
 export default class Home extends React.Component {
@@ -28,6 +29,7 @@ export default class Home extends React.Component {
                 <Nav/>
                 <Banner />
                 <HotCar/>
+                <HomeActive />
             </div>
         )
 
