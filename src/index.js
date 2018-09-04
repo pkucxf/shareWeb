@@ -15,13 +15,16 @@ import GlobalStore from './stores/GlobalStore';
 import App from './containers/App';
 import Bundle from './bundle.js';
 
-import LoginContainer2 from 'bundle-loader?lazy&name=app-[name]!./containers/adminManage/Login';
+import LoginContainer from 'bundle-loader?lazy&name=app-[name]!./containers/adminManage/Login';
 import HomeContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/Home';
 import RegisterContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/Register';
+import CarContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/Car';
 
-const Login2  = (props) => (<Bundle load={LoginContainer2} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
+const Login  = (props) => (<Bundle load={LoginContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const Home  = (props) => (<Bundle load={HomeContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const Register  = (props) => (<Bundle load={RegisterContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
+const Car  = (props) => (<Bundle load={CarContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
+
 
 const requireAuth = (nextState, replace, next) => {
   //切换路由时初始化环境
@@ -48,9 +51,10 @@ const requireAuth = (nextState, replace, next) => {
 ReactDom.render(
   <Router history={hashHistory}>
     <Route path="/" component={App}>
-      <IndexRoute component={Login2}/>
+      <IndexRoute component={Login}/>
         <Route path='/home' component={Home}/>
         <Route path='/register' component={Register}/>
+        <Route path='/car' component={Car}/>
     </Route>
   </Router>,
   document.getElementById('root')

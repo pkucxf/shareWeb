@@ -5,6 +5,8 @@ import _ from  'lodash';
 import Util from '../../common/utils';
 import {Button,Modal} from 'react-bootstrap';
 import Top from '../../components/share/Top';
+import ShareStore  from '../../stores/share/shareStore';
+const store = new ShareStore();
 
 @observer
 export default class Register extends React.Component {
@@ -24,6 +26,7 @@ export default class Register extends React.Component {
     setInput = (type , e )=>{
         let registerParam= this.state.registerParam;
         registerParam[type] = $(e.currentTarget).val();
+        registerParam['userId'] = new Date().getTime();
         this.setState({
             registerParam
         })
@@ -31,7 +34,9 @@ export default class Register extends React.Component {
 
     }
     handleRegister =()=>{
-
+        store.userReg(this.state.registerParam,(res)=>{
+            res
+        })
 
     }
 

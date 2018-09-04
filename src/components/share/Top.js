@@ -29,7 +29,7 @@ import globalStore from '../../stores/GlobalStore';
                     <div className="share-head-top">
                         <div className="share-top-left fl">
                             <a href="javascript:;">登录</a>
-                            <a href="javascript:;">注册</a>
+                            <a href="#/register">注册</a>
                         </div>
 
                         <div className="share-top-right fr">
