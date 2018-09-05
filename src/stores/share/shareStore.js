@@ -16,14 +16,13 @@ export default class  adminManageStore{
         $.ajax({
             type: "POST",
             url: 'http://127.0.0.1:9090/web/register',
-            dataType: "json",
             data: JSON.stringify(param),
             contentType: "application/json",
             success: data => {
-                if (data) {
+                if (data.code == 0 ) {
                     this.userRegResult = Object.assign({},data)
                     if (typeof callback == "function") {
-                        callback();
+                        callback(data.data);
                     }
                 } else {
                     that.globalStore.showError(data.error ? data.error : "查询失败")
@@ -41,11 +40,9 @@ export default class  adminManageStore{
         let that = this ;
         $.ajax({
             type: "POST",
-            url: Config.adminManage.userLogin,
-            // dataType: "json",
-            data: param,
-            dataType: 'json',
-            contentType: "application/x-www-form-urlencoded",
+            url: 'http://127.0.0.1:9090/web/login',
+            data:JSON.stringify(param) ,
+            contentType: "application/json",
             success: data => {
                 if (data.code == 0 ) {
                     if(typeof callback == "function"){

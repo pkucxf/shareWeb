@@ -1,13 +1,13 @@
 import React from 'react';
 import {observer} from 'mobx-react';
 import globalStore from '../../stores/GlobalStore';
-
+import Login from '../../components/share/Login';
 @observer
     export default class Top extends React.Component {
     constructor(props) {
         super(props);
         this.state ={
-
+            show:false
         }
     }
 
@@ -19,6 +19,11 @@ import globalStore from '../../stores/GlobalStore';
     componentDidMount = () =>{
 
     }
+    showLogin = ()=>{
+        this.setState({
+            show:true
+        })
+    }
 
 
     render(){
@@ -28,7 +33,7 @@ import globalStore from '../../stores/GlobalStore';
                 <div className="share-head-box">
                     <div className="share-head-top">
                         <div className="share-top-left fl">
-                            <a href="javascript:;">登录</a>
+                            <a href="javascript:;" onClick={this.showLogin}>登录</a>
                             <a href="#/register">注册</a>
                         </div>
 
@@ -42,7 +47,7 @@ import globalStore from '../../stores/GlobalStore';
                 <div className="w1180 h50">
                     <a href="javascript:;" className="logo"></a>
                 </div>
-
+                <Login show={this.state.show}/>
             </div>
 
         )

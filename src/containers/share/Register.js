@@ -13,9 +13,7 @@ export default class Register extends React.Component {
     constructor(props) {
         super(props);
         this.state ={
-            registerParam:{
-
-            }
+            registerParam:{}
         }
     }
 
@@ -26,15 +24,22 @@ export default class Register extends React.Component {
     setInput = (type , e )=>{
         let registerParam= this.state.registerParam;
         registerParam[type] = $(e.currentTarget).val();
-        registerParam['userId'] = new Date().getTime();
         this.setState({
-            registerParam
+            registerParam:registerParam
         })
         //TODO  密码校验
 
     }
     handleRegister =()=>{
-        store.userReg(this.state.registerParam,(res)=>{
+        let registerParam = this.state.registerParam;
+        let param ={
+            name:registerParam.name ||'',
+            password:registerParam.password||'',
+            phone:registerParam.phone||'',
+            sendAddress0:registerParam.address||''
+        }
+
+        store.userReg(param,(res)=>{
             res
         })
 
@@ -49,31 +54,31 @@ export default class Register extends React.Component {
                         <div className="form-group">
                             <label className="col-sm-2 control-label">用户名：</label>
                             <div className="col-sm-6">
-                                <input type="text" onClick={this.setInput.bind(this,"name")} className="form-control" placeholder="请输入用户名"/>
+                                <input type="text" onKeyUp={this.setInput.bind(this,"name")} className="form-control" placeholder="请输入用户名"/>
                             </div>
                         </div>
                         <div className="form-group">
                             <label className="col-sm-2 control-label">密码：</label>
                             <div className="col-sm-6">
-                                <input type="password" onClick={this.setInput.bind(this,"password")} className="form-control" placeholder="请输入密码"/>
+                                <input type="password" onKeyUp={this.setInput.bind(this,"password")} className="form-control" placeholder="请输入密码"/>
                             </div>
                         </div>
                         <div className="form-group">
                             <label className="col-sm-2 control-label">确认密码：</label>
                             <div className="col-sm-6">
-                                 <input type="password" onClick={this.setInput.bind(this,"password1")} className="form-control" placeholder="请再次输入密码"/>
+                                 <input type="password" onKeyUp={this.setInput.bind(this,"password1")} className="form-control" placeholder="请再次输入密码"/>
                             </div>
                         </div>
                         <div className="form-group">
                             <label className="col-sm-2 control-label">手机号：</label>
                             <div className="col-sm-6">
-                                <input type="text" className="form-control" onClick={this.setInput.bind(this,"phone")} placeholder="请输入7-12位验证码"/>
+                                <input type="text" className="form-control" onKeyUp={this.setInput.bind(this,"phone")} placeholder="请输入7-12位验证码"/>
                             </div>
                         </div>
                         <div className="form-group">
                             <label className="col-sm-2 control-label">联系地址：</label>
                             <div className="col-sm-6">
-                                <input type="text" className="form-control" onClick={this.setInput.bind(this,"address")} placeholder="请输入用户名"/>
+                                <input type="text" className="form-control" onKeyUp={this.setInput.bind(this,"address")} placeholder="请输入用户名"/>
                             </div>
                         </div>
                         <div className="share-register-button">
