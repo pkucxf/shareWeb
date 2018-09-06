@@ -5,9 +5,6 @@ import Config from '@/config';
 import globalStore from '@/stores/GlobalStore';
 import FileUpload from '../material/Upload';
 
-import {DatePicker2} from 'ssc-grid';
-// 订单信息模块
-
 export default class ModalView extends React.Component {
 
     constructor(props) {

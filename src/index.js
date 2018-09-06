@@ -25,6 +25,12 @@ const Home  = (props) => (<Bundle load={HomeContainer} {...props}>{ (Page) => <P
 const Register  = (props) => (<Bundle load={RegisterContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const Car  = (props) => (<Bundle load={CarContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 
+/*admin*/
+import aHomeContainer from 'bundle-loader?lazy&name=app-[name]!./containers/shareAdmin/adminHome';
+import aCarContainer from 'bundle-loader?lazy&name=app-[name]!./containers/shareAdmin/carType';
+
+const aHome =  (props) => (<Bundle load={aHomeContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
+const aCar =  (props) => (<Bundle load={aCarContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 
 const requireAuth = (nextState, replace, next) => {
   //切换路由时初始化环境
@@ -51,10 +57,13 @@ const requireAuth = (nextState, replace, next) => {
 ReactDom.render(
   <Router history={hashHistory}>
     <Route path="/" component={App}>
-      <IndexRoute component={Login}/>
+        <IndexRoute component={Login}/>
         <Route path='/home' component={Home}/>
         <Route path='/register' component={Register}/>
         <Route path='/car' component={Car}/>
+
+        <Route path ='/a/home' component={aHome} />
+        <Route path ='/a/car' component={aCar} />
     </Route>
   </Router>,
   document.getElementById('root')
