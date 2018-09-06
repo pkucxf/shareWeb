@@ -19,11 +19,17 @@ import LoginContainer from 'bundle-loader?lazy&name=app-[name]!./containers/admi
 import HomeContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/Home';
 import RegisterContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/Register';
 import CarContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/Car';
+import OrderContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/Order';
+import OrderListContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/OrderList';
+import OrderDetailContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/OrderDetail';
 
 const Login  = (props) => (<Bundle load={LoginContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const Home  = (props) => (<Bundle load={HomeContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const Register  = (props) => (<Bundle load={RegisterContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const Car  = (props) => (<Bundle load={CarContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
+const Order  = (props) => (<Bundle load={OrderContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
+const OrderList  = (props) => (<Bundle load={OrderListContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
+const OrderDetail  = (props) => (<Bundle load={OrderDetailContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 
 /*admin*/
 import aHomeContainer from 'bundle-loader?lazy&name=app-[name]!./containers/shareAdmin/adminHome';
@@ -61,6 +67,9 @@ ReactDom.render(
         <Route path='/home' component={Home}/>
         <Route path='/register' component={Register}/>
         <Route path='/car' component={Car}/>
+        <Route path='/order' component={Order}/>
+        <Route path='/orderList' component={OrderList}/>
+        <Route path='/orderDetail' component={OrderDetail}/>
 
         <Route path ='/a/home' component={aHome} />
         <Route path ='/a/car' component={aCar} />
