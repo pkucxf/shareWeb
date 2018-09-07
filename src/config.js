@@ -5,9 +5,13 @@ if(window.SERVICESURL!=''){
   serverUrl = window.SERVICESURL
 }
 var Config = {
-    serverUrl:'http://127.0.0.1:9090/',
     share:{
-        register:serverUrl + 'web/register'
+        register:serverUrl + 'web/register',
+    },
+    shareAdmin:{
+        getCarType:serverUrl+'admin/getCarType',
+        saveCarType:serverUrl + 'admin/addCarType',
+        delCarType:serverUrl + 'admin/delCarType',
     },
 
 

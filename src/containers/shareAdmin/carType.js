@@ -69,8 +69,8 @@ export default class carType extends React.Component {
     }
     deleteRows =(rows)=>{
         globalStore.showTipsModal("是否删除","small",()=>{},()=>{
-            store.deleteCoinPrice(rows,()=>{
-                this.getDataList()
+            adminStore.delCarType(rows,()=>{
+                this.initTable()
             });
         })
 
@@ -85,14 +85,13 @@ export default class carType extends React.Component {
 
     saveModal = (data)=>{
         if(this.state.operationType =="add"){
-            store.saveCoinPriceList(data,()=>{
+            adminStore.saveCarType(data,()=>{
                 this.closeModal();
-                this.getDataList();
+                this.initTable();
             })
         }else{
-            store.updateCoinPrice(data,()=>{
+            adminStore.updateCoinPrice(data,()=>{
                 this.closeModal();
-                this.getDataList();
             })
         }
     }

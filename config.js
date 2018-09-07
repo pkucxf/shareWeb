@@ -4,7 +4,7 @@ module.exports = {
     port: '7777',
     path: 'dist',
     publicPath: './',
-    serverHost : "http://127.0.0.1:9090"
+    serverHost : "http://127.0.0.1:9090/"
   },
   myHost:{
     path: 'dist',

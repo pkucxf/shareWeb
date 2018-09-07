@@ -35,13 +35,13 @@ export default class  shareAdminStore{
 
 
 
-    //获取首页展示数据
+    //获取车辆类型
     @action getCarType(param , callback){
         this.globalStore.hideAlert();
         let that = this ;
         $.ajax({
             type: "GET",
-            url: 'http://127.0.0.1:9090/admin/getCarType?pageNo='+param.pageNo + '&pageSize=' + param.pageSize,
+            url:Config.shareAdmin.getCarType+ '?pageNo='+param.pageNo + '&pageSize=' + param.pageSize,
             contentType: "application/json",
             success: data => {
                 if (data.code == 0 ) {
@@ -59,25 +59,15 @@ export default class  shareAdminStore{
         })
     }
 
-
-
-
-    //保存素材
-    @action saveMaterial(param,callback){
+    //保存车型
+    @action saveCarType(param,callback){
         this.globalStore.hideAlert();
-        let params = {
-            img:param.img ,
-            type:param.type ,
-            remarks:param.remarks,
-            sortNo:param.sortNo
-        };
         let that = this ;
         $.ajax({
             type: "POST",
-            url: Config.adminManage.material.insertMaterial,
-            dataType: "json",
-            data:params,
-            contentType: "application/x-www-form-urlencoded",
+            url: Config.shareAdmin.saveCarType,
+            data:JSON.stringify(param),
+            contentType: "application/json",
             success: data => {
                 if (data.code == 0 ) {
                     if(typeof callback == "function"){
@@ -85,7 +75,7 @@ export default class  shareAdminStore{
                     }
                     that.globalStore.showInfo("保存成功！")
                 } else {
-                    that.globalStore.showError(data.error ? data.error : "查询失败")
+                    that.globalStore.showError(data.error ? data.error : "操作失败")
                 }
             },
             error: (xhr, status, err) => {
@@ -94,6 +84,31 @@ export default class  shareAdminStore{
         })
 
     }
+
+    //获取车辆类型
+    @action delCarType(param , callback){
+        this.globalStore.hideAlert();
+        let that = this ;
+        $.ajax({
+            type: "GET",
+            url:Config.shareAdmin.delCarType+ '?id='+param.id,
+            contentType: "application/json",
+            success: data => {
+                if (data.code == 0 ) {
+                    if(typeof callback == "function"){
+                        callback(data.data)
+                    }
+
+                } else {
+                    that.globalStore.showError(data.error ? data.error : "操作失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
+
 
 
 
