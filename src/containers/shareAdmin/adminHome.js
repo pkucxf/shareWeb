@@ -7,30 +7,45 @@ import {Button,Modal} from 'react-bootstrap';
 import localforage from 'localforage';
 import Menu from '../../containers/shareAdmin/adminMenu';
 import CarType from '../../containers/shareAdmin/carType';
+import UserList from '../../containers/shareAdmin/userList';
 
 @observer
 export default class adminHome extends React.Component {
     constructor(props) {
         super(props);
         this.state ={
+            menu:0,
+            name:'用户管理'
         }
     }
 
     componentWillMount =()=>{
         globalStore.hideAlert();
+    }
+    componentDidMount = () =>{
+        window.onresize = function(){
+            $(".share-admin-menu").css("height",$(window).height()-50+"px")
+        }
+        $(".share-admin-menu").css("height",$(window).height()-50+"px")
+    }
 
+    changeMenu = (menu,name) =>{
+        this.setState({
+            menu,name
+        })
     }
 
     render(){
         return(
             <div className="share-admin-box">
                 <div className="share-admin-head">
-                    xxx
+                    后台管理系统
                 </div>
                 <div className="share-admin-body">
-                    <Menu/>
+                    <Menu menu={this.state.menu} changeMenu = {this.changeMenu}/>
                     <div className="share-admin-content">
-                        <CarType/>
+                        <CarType menu={this.state.menu} name={this.state.name}/>
+                        <UserList menu={this.state.menu} name={this.state.name}/>
                     </div>
                 </div>
 

@@ -1,6 +1,4 @@
-/**
- * Created by liuyyg on 2017/1/20.
- */
+
 import React from 'react';
 import {Link} from 'react-router';
 import Config from '../config'

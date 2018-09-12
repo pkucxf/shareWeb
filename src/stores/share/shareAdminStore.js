@@ -8,6 +8,80 @@ export default class  shareAdminStore{
 
     globalStore = GlobalStore;
 
+    //获取车辆类型
+    @action getUserInfo(param,callback){
+        this.globalStore.hideAlert();
+        let that = this ;
+        $.ajax({
+            type: "GET",
+            url:Config.shareAdmin.getUserInfo,
+            contentType: "application/json",
+            success: data => {
+                if (data.code == 0 ) {
+                    if(typeof callback == "function"){
+                        callback(data.data)
+                    }
+                } else {
+                    that.globalStore.showError(data.error ? data.error : "查询失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
+
+    //获取车辆类型
+    @action delUser(param , callback){
+        this.globalStore.hideAlert();
+        let that = this ;
+        $.ajax({
+            type: "GET",
+            url:Config.shareAdmin.delUserInfo+ '?id='+param.userId,
+            contentType: "application/json",
+            success: data => {
+                if (data.code == 0 ) {
+                    if(typeof callback == "function"){
+                        callback(data.data)
+                    }
+
+                } else {
+                    that.globalStore.showError(data.error ? data.error : "操作失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
+
+
+    //修改用户信息
+    @action updateUserInfo(param,callback){
+        this.globalStore.hideAlert();
+        let that = this ;
+        $.ajax({
+            type: "POST",
+            url: Config.shareAdmin.updateUserInfo,
+            data:JSON.stringify(param),
+            contentType: "application/json",
+            success: data => {
+                if (data.code == 0 ) {
+                    if(typeof callback == "function"){
+                        callback(data.data)
+                    }
+                    that.globalStore.showInfo("修改成功！")
+                } else {
+                    that.globalStore.showError(data.error ? data.error : "操作失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+
+    }
+
 
     //用户登录
     @action userLogin(param,callback){

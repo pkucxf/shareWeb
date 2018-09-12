@@ -10,12 +10,14 @@ import ModalView from "@/components/adminManage/material/ModalView";
 import shareAdminStore from '../../stores/share/shareAdminStore'
 const adminStore = new shareAdminStore();
 @observer
-export default class carType extends React.Component {
+export default class userList extends React.Component {
     constructor(props) {
         super(props);
         this.state ={
-            rowsName: [{code:'id',name:'id',hidden:true},{code:'carName',name:'品牌',add:true },{code:'carProduce',name:'产地',add:true },{code:'carDrive',name:'驱动数量',add:true },
-               {code:'carTypes',name:'燃油类型',add:true },{code:'carSeat',name:'驱动数量',add:true },       
+            rowsName: [
+                {code:'userId',name:'userId',hidden:true},{code:'userName',name:'用户名',hidden:true },{code:'name',name:'用户名',add:true },
+                {code:'password',name:'密码',add:false }, {code:'email',name:'邮箱',add:true },
+                {code:'phone',name:'电话',add:true },{code:'locked',name:'锁定状态',add:true },{code:'registerTime',name:'注册时间' },
             ],
             tableData:[]
         }
@@ -32,7 +34,7 @@ export default class carType extends React.Component {
             pageNo:0,
             pageSize:10
         }
-        adminStore.getCarType(param,(res)=>{
+        adminStore.getUserInfo(param,(res)=>{
             this.setState({
                 tableData:res 
             })
@@ -69,7 +71,7 @@ export default class carType extends React.Component {
     }
     deleteRows =(rows)=>{
         globalStore.showTipsModal("是否删除","small",()=>{},()=>{
-            adminStore.delCarType(rows,()=>{
+            adminStore.delUser(rows,()=>{
                 this.initTable()
             });
         })
@@ -85,12 +87,16 @@ export default class carType extends React.Component {
 
     saveModal = (data)=>{
         if(this.state.operationType =="add"){
-            adminStore.saveCarType(data,()=>{
-                this.closeModal();
-                this.initTable();
-            })
+
         }else{
-            adminStore.updateCoinPrice(data,()=>{
+            var param = {
+                userId:data.userId,
+                name:data.name,
+                email:data.email,
+                locked:data.locked,
+                phone:data.phone
+            }
+            adminStore.updateUserInfo(param,()=>{
                 this.closeModal();
             })
         }
@@ -101,10 +107,10 @@ export default class carType extends React.Component {
             noDataText:"暂无数据"
         }
         return(
-            <div className={this.props.menu !=1 ? "hide":"share-box"} >
+            <div className={this.props.menu !=0 ? "hide":"share-box"} >
                 <h2 className="share-admin-title">{this.props.name}</h2>
                 <div className="fr mb10">
-                    <Button bsStyle="info" onClick={this.addRows}>新增</Button>
+                    {/** <Button bsStyle="info" onClick={this.addRows}>新增</Button>**/}
                 </div>
                 <BootstrapTable data={this.state.tableData} striped hover options={options}>
                     <TableHeaderColumn isKey dataField='id' hidden>Product ID</TableHeaderColumn>

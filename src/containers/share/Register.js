@@ -35,6 +35,7 @@ export default class Register extends React.Component {
         let param ={
             name:registerParam.name ||'',
             password:registerParam.password||'',
+            email:registerParam.email||'',
             phone:registerParam.phone||'',
             sendAddress0:registerParam.address||''
         }

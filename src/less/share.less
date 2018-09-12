@@ -587,17 +587,21 @@
   .share-admin-menu{
     width:13%;
     min-width: 150px;
-    height: 100%;
     background: #32C2CD ;
     float: left;
     ul{
       li{
+        cursor: pointer;
         width: 100%;
         border-bottom: 1px solid;
         line-height: 30px;
         padding: 10px 15px;
         color: #fff;
       }
+      li.active{
+        color: #3e1212;
+      }
+
     }
 
   }
@@ -607,5 +611,12 @@
     padding-top: 10px;
     margin: 0 1%;
     .fl;
+    .share-admin-title{
+      height: 40px;
+      line-height: 40px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #32C2CD;
+    }
   }
 }
