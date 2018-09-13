@@ -16,6 +16,7 @@ export default class carType extends React.Component {
                 {id:1,name:'车辆类型管理',href:'car'},
                 {id:2,name:'店铺管理',href:'car'},
                 {id:3,name:'订单管理',href:'car'},
+                {id:4,name:'发布活动',href:'car'},
             ]
         }
     }

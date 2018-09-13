@@ -15,6 +15,9 @@ var Config = {
         getCarType:serverUrl+'admin/getCarType',
         saveCarType:serverUrl + 'admin/addCarType',
         delCarType:serverUrl + 'admin/delCarType',
+        getStore:serverUrl + 'admin/getStore',
+        saveStore:serverUrl+'admin/addStore',
+        delStore:serverUrl +'admin/delStore',
     },
 
 

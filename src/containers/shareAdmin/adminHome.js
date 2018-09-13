@@ -8,6 +8,7 @@ import localforage from 'localforage';
 import Menu from '../../containers/shareAdmin/adminMenu';
 import CarType from '../../containers/shareAdmin/carType';
 import UserList from '../../containers/shareAdmin/userList';
+import StoreList from '../../containers/shareAdmin/storeList';
 
 @observer
 export default class adminHome extends React.Component {
@@ -46,6 +47,7 @@ export default class adminHome extends React.Component {
                     <div className="share-admin-content">
                         <CarType menu={this.state.menu} name={this.state.name}/>
                         <UserList menu={this.state.menu} name={this.state.name}/>
+                        <StoreList menu={this.state.menu} name={this.state.name}/>
                     </div>
                 </div>
 
