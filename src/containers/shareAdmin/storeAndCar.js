@@ -10,12 +10,13 @@ import ModalView from "@/components/adminManage/material/ModalView";
 import shareAdminStore from '../../stores/share/shareAdminStore'
 const adminStore = new shareAdminStore();
 @observer
-export default class carType extends React.Component {
+export default class storeAndCar extends React.Component {
     constructor(props) {
         super(props);
         this.state ={
-            rowsName: [{code:'id',name:'id',hidden:true},{code:'carName',name:'品牌',add:true },{code:'carProduce',name:'产地',add:true },{code:'carDrive',name:'驱动数量',add:true },
-               {code:'carTypes',name:'燃油类型',add:true },{code:'carSeat',name:'座位数量',add:true },{code:'def0',name:'车型',add:true },{code:'img',name:'车辆图片',add:true },
+            rowsName: [{code:'id',name:'id',hidden:true},{code:'storeId',name:'',hidden:true },{code:'storeName',name:'店铺名称',add:true },
+                {code:'carName',name:'车辆名称',add:true }, {code:'carNum',name:'车辆数量',add:true },
+
             ],
             tableData:[]
         }
@@ -34,7 +35,7 @@ export default class carType extends React.Component {
         }
         adminStore.getCarType(param,(res)=>{
             this.setState({
-                tableData:res 
+                tableData:res
             })
         })
     }
@@ -85,7 +86,6 @@ export default class carType extends React.Component {
 
     saveModal = (data)=>{
         if(this.state.operationType =="add"){
-            data.def0 = data.img ;
             adminStore.saveCarType(data,()=>{
                 this.closeModal();
                 this.initTable();
@@ -102,7 +102,7 @@ export default class carType extends React.Component {
             noDataText:"暂无数据"
         }
         return(
-            <div className={this.props.menu !=1 ? "hide":"share-box"} >
+            <div className={this.props.menu !=3 ? "hide":"share-box"} >
                 <h2 className="share-admin-title">{this.props.name}</h2>
                 <div className="fr mb10">
                     <Button bsStyle="info" onClick={this.addRows}>新增</Button>

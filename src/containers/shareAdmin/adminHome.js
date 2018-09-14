@@ -9,6 +9,7 @@ import Menu from '../../containers/shareAdmin/adminMenu';
 import CarType from '../../containers/shareAdmin/carType';
 import UserList from '../../containers/shareAdmin/userList';
 import StoreList from '../../containers/shareAdmin/storeList';
+import StoreAndCar from '../../containers/shareAdmin/storeAndCar';
 
 @observer
 export default class adminHome extends React.Component {
@@ -48,6 +49,7 @@ export default class adminHome extends React.Component {
                         <CarType menu={this.state.menu} name={this.state.name}/>
                         <UserList menu={this.state.menu} name={this.state.name}/>
                         <StoreList menu={this.state.menu} name={this.state.name}/>
+                        <StoreAndCar menu={this.state.menu} name={this.state.name}/>
                     </div>
                 </div>
 

@@ -29,7 +29,7 @@ class Upload extends React.Component {
         let that = this ;
         const options = this.props.uploadOptions || {};
         const uploadOptions = {
-            baseUrl: Config.adminManage.upload,   // 请求地址
+            baseUrl: Config.common.upload,   // 请求地址
             param: options,
             fileFieldName: 'file',
             chooseFile: (file)=> {
