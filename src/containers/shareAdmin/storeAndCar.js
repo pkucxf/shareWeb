@@ -15,8 +15,7 @@ export default class storeAndCar extends React.Component {
         super(props);
         this.state ={
             rowsName: [{code:'id',name:'id',hidden:true},{code:'storeId',name:'',hidden:true },{code:'storeName',name:'店铺名称',add:true },
-                {code:'carName',name:'车辆名称',add:true }, {code:'carNum',name:'车辆数量',add:true },
-
+                {code:'carName',name:'车辆名称',add:true,type:'select' }, {code:'carNum',name:'车辆数量',add:true,type:'select'},
             ],
             tableData:[]
         }
@@ -25,7 +24,6 @@ export default class storeAndCar extends React.Component {
     componentWillMount =()=>{
         globalStore.hideAlert();
         this.initTable();
-
     }
 
     initTable = () =>{
@@ -33,25 +31,42 @@ export default class storeAndCar extends React.Component {
             pageNo:0,
             pageSize:10
         }
-        adminStore.getCarType(param,(res)=>{
+        adminStore.getCarAndStore(param,(res)=>{
             this.setState({
                 tableData:res
             })
         })
     }
 
-    dataFormat = (type,rows,cell)=>{
-        return (
-            <span>{rows}</span>
-        )
+    dataFormat = (code,type,rows,cell)=>{
+        if(type == 'select'){
+            return (
+                <select>
+                    <option>1</option>
+                </select>
+            )
+        }else{
+            return (
+                <span>{rows}</span>
+            )
+        }
+
     }
     addRows =()=>{
-        this.setState({
+        let tableData  = this.state.tableData ;
+        let obj  = {id:new Date().getTime(),"storeId":'',"storeName":'',"carName":'',"carNum":''};
+        tableData.push(obj);
+        this.setState({tableData})
+
+      /*  this.setState({
             show:true,
             operationType:'add',
             operationData:{}
-        })
+        })*/
 
+    }
+    afterSaveRows =() =>{
+        
     }
     previewRows = (rows)=>{
         this.setState({
@@ -101,18 +116,23 @@ export default class storeAndCar extends React.Component {
         const  options ={
             noDataText:"暂无数据"
         }
+        const cellEditProp = {
+            mode: 'click',
+            afterSaveRowsCell:this.afterSaveRows
+        };
+
         return(
             <div className={this.props.menu !=3 ? "hide":"share-box"} >
                 <h2 className="share-admin-title">{this.props.name}</h2>
                 <div className="fr mb10">
                     <Button bsStyle="info" onClick={this.addRows}>新增</Button>
                 </div>
-                <BootstrapTable data={this.state.tableData} striped hover options={options}>
+                <BootstrapTable data={this.state.tableData} striped hover options={options} cellEdit={cellEditProp}>
                     <TableHeaderColumn isKey dataField='id' hidden>Product ID</TableHeaderColumn>
                     {this.state.rowsName.map((m,n)=>{
                         if(!m.hidden ){
                             return (
-                                <TableHeaderColumn dataField={m.code} dataFormat={this.dataFormat.bind(this,m.code)}>{m.name}</TableHeaderColumn>
+                                <TableHeaderColumn dataField={m.code} dataFormat={this.dataFormat.bind(this,m.code,m.type)}>{m.name}</TableHeaderColumn>
                             )
                         }
                     })}

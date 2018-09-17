@@ -18,6 +18,7 @@ var Config = {
         getStore:serverUrl + 'admin/getStore',
         saveStore:serverUrl+'admin/addStore',
         delStore:serverUrl +'admin/delStore',
+        getCarAndStore:serverUrl + 'admin/getCarAndStore',
     },
     common:{
         upload:serverUrl + 'common/upload', //单文件上传
