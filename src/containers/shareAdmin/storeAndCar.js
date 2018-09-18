@@ -8,6 +8,8 @@ import localforage from 'localforage';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import ModalView from "@/components/adminManage/material/ModalView";
 import shareAdminStore from '../../stores/share/shareAdminStore'
+import HeadBox from "../../components/shareAdmin/adminHead";
+import Menu from "../../components/shareAdmin/adminMenu";
 const adminStore = new shareAdminStore();
 @observer
 export default class storeAndCar extends React.Component {
@@ -15,9 +17,10 @@ export default class storeAndCar extends React.Component {
         super(props);
         this.state ={
             rowsName: [{code:'id',name:'id',hidden:true},{code:'storeId',name:'',hidden:true },{code:'storeName',name:'店铺名称',add:true },
-                {code:'carName',name:'车辆名称',add:true,type:'select' }, {code:'carNum',name:'车辆数量',add:true,type:'select'},
+                {code:'carName',name:'车辆名称',add:true,type:'select' }, {code:'carNum',name:'车辆数量',add:true},
             ],
-            tableData:[]
+            tableData:[],
+            carList:[]
         }
     }
 
@@ -36,20 +39,23 @@ export default class storeAndCar extends React.Component {
                 tableData:res
             })
         })
+
+        adminStore.getCarList((res)=>{
+            this.setState({
+                carList:res
+            })
+        })
     }
 
     dataFormat = (code,type,rows,cell)=>{
-        if(type == 'select'){
-            return (
-                <select>
-                    <option>1</option>
-                </select>
-            )
-        }else{
+        if(type == "select"){
             return (
                 <span>{rows}</span>
             )
-        }
+        }else
+            return (
+                <span>{rows}</span>
+            )
 
     }
     addRows =()=>{
@@ -105,6 +111,7 @@ export default class storeAndCar extends React.Component {
                 this.closeModal();
                 this.initTable();
             })
+
         }else{
             adminStore.updateCoinPrice(data,()=>{
                 this.closeModal();
@@ -122,34 +129,49 @@ export default class storeAndCar extends React.Component {
         };
 
         return(
-            <div className={this.props.menu !=3 ? "hide":"share-box"} >
-                <h2 className="share-admin-title">{this.props.name}</h2>
-                <div className="fr mb10">
-                    <Button bsStyle="info" onClick={this.addRows}>新增</Button>
-                </div>
-                <BootstrapTable data={this.state.tableData} striped hover options={options} cellEdit={cellEditProp}>
-                    <TableHeaderColumn isKey dataField='id' hidden>Product ID</TableHeaderColumn>
-                    {this.state.rowsName.map((m,n)=>{
-                        if(!m.hidden ){
-                            return (
-                                <TableHeaderColumn dataField={m.code} dataFormat={this.dataFormat.bind(this,m.code,m.type)}>{m.name}</TableHeaderColumn>
-                            )
-                        }
-                    })}
+            <div className="share-admin-box">
+                <HeadBox />
+                <div className="share-admin-body">
+                    <Menu menu={this.state.menu} />
+                    <div className="share-admin-content">
+                        <h2 className="share-admin-title">{this.props.name}</h2>
+                        <div className="fr mb10">
+                            <Button bsStyle="info" onClick={this.addRows}>新增</Button>
+                        </div>
+                        <BootstrapTable data={this.state.tableData} striped hover options={options} cellEdit={cellEditProp} >
+                            <TableHeaderColumn isKey dataField='id' hidden>Product ID</TableHeaderColumn>
 
-                    <TableHeaderColumn dataFormat = {
-                        (cell,row)=>{
-                            return(
-                                <div className="a-operation-box">
-                                    <span className="mr10 glyphicon glyphicon-eye-open" onClick={this.previewRows.bind(this,row)} title="查看"></span>
-                                    <span className="mr10 glyphicon glyphicon-edit" onClick={this.editRows.bind(this,row)} title="编辑"></span>
-                                    <span onClick={this.deleteRows.bind(this,row)} className="glyphicon glyphicon-trash" title="删除"></span>
-                                </div>
-                            )
-                        }
-                    }>操作</TableHeaderColumn>
-                </BootstrapTable>
-                <ModalView show= {this.state.show} saveModal = {this.saveModal} closeModal={this.closeModal} rowsName ={this.state.rowsName} data={this.state.operationData} type={this.state.operationType}/>
+
+                            {this.state.rowsName.map((m,n)=>{
+                                if(!m.hidden ){
+                                    if(m.type == 'select'){
+                                        return (
+                                            <TableHeaderColumn dataField='type' editable={ { type: 'select', options: { values: this.state.carList } } } dataFormat={this.dataFormat.bind(this,m.code,m.type)}>车辆名称</TableHeaderColumn>
+                                        )
+                                    }else{
+                                        return (
+                                            <TableHeaderColumn dataField={m.code} dataFormat={this.dataFormat.bind(this,m.code,m.type)}>{m.name}</TableHeaderColumn>
+                                        )
+                                    }
+
+                                }
+                            })}
+
+                            <TableHeaderColumn editable = {false} dataFormat = {
+                                (cell,row)=>{
+                                    return(
+                                        <div className="a-operation-box">
+                                           {/* <span className="mr10 glyphicon glyphicon-eye-open" onClick={this.previewRows.bind(this,row)} title="查看"></span>
+                                            <span className="mr10 glyphicon glyphicon-edit" onClick={this.editRows.bind(this,row)} title="编辑"></span>*/}
+                                            <span onClick={this.deleteRows.bind(this,row)} className="glyphicon glyphicon-trash" title="删除"></span>
+                                        </div>
+                                    )
+                                }
+                            }>操作</TableHeaderColumn>
+                        </BootstrapTable>
+                        <ModalView show= {this.state.show} saveModal = {this.saveModal} closeModal={this.closeModal} rowsName ={this.state.rowsName} data={this.state.operationData} type={this.state.operationType}/>
+                    </div>
+                </div>
             </div>
         )
 

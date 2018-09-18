@@ -12,7 +12,7 @@ import StoreList from '../../containers/shareAdmin/storeList';
 import StoreAndCar from '../../containers/shareAdmin/storeAndCar';
 
 @observer
-export default class adminHome extends React.Component {
+export default class adminHead extends React.Component {
     constructor(props) {
         super(props);
         this.state ={
@@ -42,12 +42,6 @@ export default class adminHome extends React.Component {
             <div className="share-admin-box">
                 <div className="share-admin-head">
                     后台管理系统
-                </div>
-                <div className="share-admin-body">
-                    <Menu menu={this.state.menu} changeMenu = {this.changeMenu}/>
-                    <div className="share-admin-content">
-
-                    </div>
                 </div>
 
             </div>

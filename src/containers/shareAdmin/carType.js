@@ -8,6 +8,9 @@ import localforage from 'localforage';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import ModalView from "@/components/adminManage/material/ModalView";
 import shareAdminStore from '../../stores/share/shareAdminStore'
+import HeadBox from "../../components/shareAdmin/adminHead";
+import Menu from "../../components/shareAdmin/adminMenu";
+
 const adminStore = new shareAdminStore();
 @observer
 export default class carType extends React.Component {
@@ -102,35 +105,47 @@ export default class carType extends React.Component {
             noDataText:"暂无数据"
         }
         return(
-            <div className={this.props.menu !=1 ? "hide":"share-box"} >
-                <h2 className="share-admin-title">{this.props.name}</h2>
-                <div className="fr mb10">
-                    <Button bsStyle="info" onClick={this.addRows}>新增</Button>
-                </div>
-                <BootstrapTable data={this.state.tableData} striped hover options={options}>
-                    <TableHeaderColumn isKey dataField='id' hidden>Product ID</TableHeaderColumn>
-                    {this.state.rowsName.map((m,n)=>{
-                        if(!m.hidden ){
-                            return (
-                                <TableHeaderColumn dataField={m.code} dataFormat={this.dataFormat.bind(this,m.code)}>{m.name}</TableHeaderColumn>
-                            )
-                        }
-                    })}
 
-                    <TableHeaderColumn dataFormat = {
-                        (cell,row)=>{
-                            return(
-                                <div className="a-operation-box">
-                                    <span className="mr10 glyphicon glyphicon-eye-open" onClick={this.previewRows.bind(this,row)} title="查看"></span>
-                                    <span className="mr10 glyphicon glyphicon-edit" onClick={this.editRows.bind(this,row)} title="编辑"></span>
-                                    <span onClick={this.deleteRows.bind(this,row)} className="glyphicon glyphicon-trash" title="删除"></span>
-                                </div>
-                            )
-                        }
-                    }>操作</TableHeaderColumn>
-                </BootstrapTable>
-                <ModalView show= {this.state.show} saveModal = {this.saveModal} closeModal={this.closeModal} rowsName ={this.state.rowsName} data={this.state.operationData} type={this.state.operationType}/>
+            <div className="share-admin-box">
+                <HeadBox />
+
+                <div className="share-admin-body">
+                    <Menu menu={this.state.menu} />
+                    <div className="share-admin-content">
+                        <div className="fr mb10">
+                            <Button bsStyle="info" onClick={this.addRows}>新增</Button>
+                        </div>
+                        <BootstrapTable data={this.state.tableData} striped hover options={options}>
+                            <TableHeaderColumn isKey dataField='id' hidden>Product ID</TableHeaderColumn>
+                            {this.state.rowsName.map((m,n)=>{
+                                if(!m.hidden ){
+                                    return (
+                                        <TableHeaderColumn dataField={m.code} dataFormat={this.dataFormat.bind(this,m.code)}>{m.name}</TableHeaderColumn>
+                                    )
+                                }
+                            })}
+
+                            <TableHeaderColumn dataFormat = {
+                                (cell,row)=>{
+                                    return(
+                                        <div className="a-operation-box">
+                                            <span className="mr10 glyphicon glyphicon-eye-open" onClick={this.previewRows.bind(this,row)} title="查看"></span>
+                                            <span className="mr10 glyphicon glyphicon-edit" onClick={this.editRows.bind(this,row)} title="编辑"></span>
+                                            <span onClick={this.deleteRows.bind(this,row)} className="glyphicon glyphicon-trash" title="删除"></span>
+                                        </div>
+                                    )
+                                }
+                            }>操作</TableHeaderColumn>
+                        </BootstrapTable>
+                        <ModalView show= {this.state.show} saveModal = {this.saveModal} closeModal={this.closeModal} rowsName ={this.state.rowsName} data={this.state.operationData} type={this.state.operationType}/>
+                    </div>
+                </div>
+
             </div>
+
+
+
+
         )
 
     }

@@ -35,9 +35,15 @@ const Store  = (props) => (<Bundle load={StoreContainer} {...props}>{ (Page) => 
 /*admin*/
 import aHomeContainer from 'bundle-loader?lazy&name=app-[name]!./containers/shareAdmin/adminHome';
 import aCarContainer from 'bundle-loader?lazy&name=app-[name]!./containers/shareAdmin/carType';
+import aStoreListContainer from 'bundle-loader?lazy&name=app-[name]!./containers/shareAdmin/storeList';
+import aUserListContainer from 'bundle-loader?lazy&name=app-[name]!./containers/shareAdmin/userList';
+import aStoreAndCarContainer from 'bundle-loader?lazy&name=app-[name]!./containers/shareAdmin/storeAndCar';
 
 const aHome =  (props) => (<Bundle load={aHomeContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const aCar =  (props) => (<Bundle load={aCarContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
+const aStoreList =  (props) => (<Bundle load={aStoreListContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
+const aUserList =  (props) => (<Bundle load={aUserListContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
+const aStoreAndCar =  (props) => (<Bundle load={aStoreAndCarContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 
 const requireAuth = (nextState, replace, next) => {
   //切换路由时初始化环境
@@ -74,7 +80,10 @@ ReactDom.render(
         <Route path='/orderDetail' component={OrderDetail}/>
 
         <Route path ='/a/home' component={aHome} />
-        <Route path ='/a/car' component={aCar} />
+        <Route path ='/a/carType' component={aCar} />
+        <Route path ='/a/userList' component={aUserList} />
+        <Route path ='/a/storeList' component={aStoreList} />
+        <Route path ='/a/storeAndCar' component={aStoreAndCar} />
     </Route>
   </Router>,
   document.getElementById('root')
