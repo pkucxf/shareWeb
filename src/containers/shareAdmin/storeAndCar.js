@@ -71,8 +71,10 @@ export default class storeAndCar extends React.Component {
         })*/
 
     }
-    afterSaveRows =() =>{
-        
+    afterSaveRows =(row, cellName, cellValue) =>{
+        var r =  row,
+            cellName,
+            cellValue
     }
     previewRows = (rows)=>{
         this.setState({
@@ -125,6 +127,7 @@ export default class storeAndCar extends React.Component {
         }
         const cellEditProp = {
             mode: 'click',
+            blurToSave: true,
             afterSaveRowsCell:this.afterSaveRows
         };
 
@@ -146,7 +149,7 @@ export default class storeAndCar extends React.Component {
                                 if(!m.hidden ){
                                     if(m.type == 'select'){
                                         return (
-                                            <TableHeaderColumn dataField='type' editable={ { type: 'select', options: { values: this.state.carList } } } dataFormat={this.dataFormat.bind(this,m.code,m.type)}>车辆名称</TableHeaderColumn>
+                                            <TableHeaderColumn dataField='type' editable={ { type: 'select', options: { values: this.state.carList } } } >车辆名称</TableHeaderColumn>
                                         )
                                     }else{
                                         return (
