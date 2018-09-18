@@ -94,6 +94,8 @@ export default class ModalView extends React.Component {
                                             ):(
                                                 <input type="text" className={"form-control"} onChange={this.setInput.bind(this,m.code)} value={this.state.modalObj[m.code]}/>
                                             )}
+
+
                                         </div>
                                     )
                                 }
@@ -115,6 +117,8 @@ export default class ModalView extends React.Component {
                                             ):(
                                                 <input type="text" className={"form-control"} onChange={this.setInput.bind(this,m.code)} value={this.state.modalObj[m.code]}/>
                                             )}
+
+                                            {m.type == 'select' ? (<div></div>):""}
                                         </div>
                                     )
                                 }

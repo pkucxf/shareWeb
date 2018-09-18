@@ -19,14 +19,14 @@ export default class storeAndCar extends React.Component {
             rowsName: [{code:'id',name:'id',hidden:true},{code:'storeId',name:'',hidden:true },{code:'storeName',name:'店铺名称',add:true },
                 {code:'carName',name:'车辆名称',add:true,type:'select' }, {code:'carNum',name:'车辆数量',add:true},
             ],
-            tableData:[],
-            carList:[]
+            tableData:[]
         }
     }
 
     componentWillMount =()=>{
         globalStore.hideAlert();
         this.initTable();
+
     }
 
     initTable = () =>{
@@ -39,42 +39,20 @@ export default class storeAndCar extends React.Component {
                 tableData:res
             })
         })
-
-        adminStore.getCarList((res)=>{
-            this.setState({
-                carList:res
-            })
-        })
     }
 
-    dataFormat = (code,type,rows,cell)=>{
-        if(type == "select"){
-            return (
-                <span>{rows}</span>
-            )
-        }else
-            return (
-                <span>{rows}</span>
-            )
-
+    dataFormat = (type,rows,cell)=>{
+        return (
+            <span>{rows}</span>
+        )
     }
     addRows =()=>{
-        let tableData  = this.state.tableData ;
-        let obj  = {id:new Date().getTime(),"storeId":'',"storeName":'',"carName":'',"carNum":''};
-        tableData.push(obj);
-        this.setState({tableData})
-
-      /*  this.setState({
+        this.setState({
             show:true,
             operationType:'add',
             operationData:{}
-        })*/
+        })
 
-    }
-    afterSaveRows =(row, cellName, cellValue) =>{
-        var r =  row,
-            cellName,
-            cellValue
     }
     previewRows = (rows)=>{
         this.setState({
@@ -93,7 +71,7 @@ export default class storeAndCar extends React.Component {
     }
     deleteRows =(rows)=>{
         globalStore.showTipsModal("是否删除","small",()=>{},()=>{
-            adminStore.delCarType(rows,()=>{
+            adminStore.delStore(rows,()=>{
                 this.initTable()
             });
         })
@@ -109,15 +87,15 @@ export default class storeAndCar extends React.Component {
 
     saveModal = (data)=>{
         if(this.state.operationType =="add"){
-            adminStore.saveCarType(data,()=>{
+            data.storeStar = parseInt( data.storeStar);
+            data.storePhone = parseInt( data.storePhone);
+            data.storeId = new Date().getTime();
+            adminStore.saveStore(data,()=>{
                 this.closeModal();
-                this.initTable();
             })
 
         }else{
-            adminStore.updateCoinPrice(data,()=>{
-                this.closeModal();
-            })
+
         }
     }
 
@@ -125,12 +103,6 @@ export default class storeAndCar extends React.Component {
         const  options ={
             noDataText:"暂无数据"
         }
-        const cellEditProp = {
-            mode: 'click',
-            blurToSave: true,
-            afterSaveRowsCell:this.afterSaveRows
-        };
-
         return(
             <div className="share-admin-box">
                 <HeadBox />
@@ -141,31 +113,22 @@ export default class storeAndCar extends React.Component {
                         <div className="fr mb10">
                             <Button bsStyle="info" onClick={this.addRows}>新增</Button>
                         </div>
-                        <BootstrapTable data={this.state.tableData} striped hover options={options} cellEdit={cellEditProp} >
+                        <BootstrapTable data={this.state.tableData} striped hover options={options}>
                             <TableHeaderColumn isKey dataField='id' hidden>Product ID</TableHeaderColumn>
-
-
                             {this.state.rowsName.map((m,n)=>{
                                 if(!m.hidden ){
-                                    if(m.type == 'select'){
-                                        return (
-                                            <TableHeaderColumn dataField='type' editable={ { type: 'select', options: { values: this.state.carList } } } >车辆名称</TableHeaderColumn>
-                                        )
-                                    }else{
-                                        return (
-                                            <TableHeaderColumn dataField={m.code} dataFormat={this.dataFormat.bind(this,m.code,m.type)}>{m.name}</TableHeaderColumn>
-                                        )
-                                    }
-
+                                    return (
+                                        <TableHeaderColumn dataField={m.code} dataFormat={this.dataFormat.bind(this,m.code)}>{m.name}</TableHeaderColumn>
+                                    )
                                 }
                             })}
 
-                            <TableHeaderColumn editable = {false} dataFormat = {
+                            <TableHeaderColumn dataFormat = {
                                 (cell,row)=>{
                                     return(
                                         <div className="a-operation-box">
-                                           {/* <span className="mr10 glyphicon glyphicon-eye-open" onClick={this.previewRows.bind(this,row)} title="查看"></span>
-                                            <span className="mr10 glyphicon glyphicon-edit" onClick={this.editRows.bind(this,row)} title="编辑"></span>*/}
+                                            <span className="mr10 glyphicon glyphicon-eye-open" onClick={this.previewRows.bind(this,row)} title="查看"></span>
+                                            <span className="mr10 glyphicon glyphicon-edit" onClick={this.editRows.bind(this,row)} title="编辑"></span>
                                             <span onClick={this.deleteRows.bind(this,row)} className="glyphicon glyphicon-trash" title="删除"></span>
                                         </div>
                                     )
