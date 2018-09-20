@@ -4,6 +4,7 @@ import _ from 'lodash';
 import Config from '@/config';
 import globalStore from '@/stores/GlobalStore';
 import FileUpload from '../material/Upload';
+import Select from 'react-select';
 
 export default class ModalView extends React.Component {
 
@@ -115,10 +116,15 @@ export default class ModalView extends React.Component {
                                                 {this.state.modalObj[m.code] ? <img src={this.state.modalObj[m.code]} style={{width:"200px"}}/>:""}
                                             </div>
                                             ):(
-                                                <input type="text" className={"form-control"} onChange={this.setInput.bind(this,m.code)} value={this.state.modalObj[m.code]}/>
+                                                m.type == 'select' ? (<div>
+                                                    <Select options={m.selectData} isMulti    className="basic-multi-select"
+                                                            classNamePrefix="select"/>
+                                                </div>):(
+                                                    <input type="text" className={"form-control"} onChange={this.setInput.bind(this,m.code)} value={this.state.modalObj[m.code]}/>
+                                                )
                                             )}
 
-                                            {m.type == 'select' ? (<div></div>):""}
+
                                         </div>
                                     )
                                 }

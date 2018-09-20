@@ -17,15 +17,16 @@ export default class storeAndCar extends React.Component {
         super(props);
         this.state ={
             rowsName: [{code:'id',name:'id',hidden:true},{code:'storeId',name:'',hidden:true },{code:'storeName',name:'店铺名称',add:true },
-                {code:'carName',name:'车辆名称',add:true,type:'select' }, {code:'carNum',name:'车辆数量',add:true},
+                {code:'carName',name:'车辆名称',add:true,type:'select',selectData:[] }, {code:'carNum',name:'车辆数量',add:true},
             ],
-            tableData:[]
+            tableData:[],
         }
     }
 
     componentWillMount =()=>{
         globalStore.hideAlert();
         this.initTable();
+        this.getCar();
 
     }
 
@@ -37,6 +38,18 @@ export default class storeAndCar extends React.Component {
         adminStore.getCarAndStore(param,(res)=>{
             this.setState({
                 tableData:res
+            })
+        })
+    }
+
+    getCar =()=>{
+        let rowsName = this.state.rowsName ;
+
+        adminStore.getCarList((res)=>{
+
+            rowsName[3].selectData = res ;
+            this.setState({
+                rowsName
             })
         })
     }
