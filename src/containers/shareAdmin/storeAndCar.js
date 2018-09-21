@@ -16,7 +16,7 @@ export default class storeAndCar extends React.Component {
     constructor(props) {
         super(props);
         this.state ={
-            rowsName: [{code:'id',name:'id',hidden:true},{code:'storeId',name:'',hidden:true },{code:'storeName',name:'店铺名称',add:true },
+            rowsName: [{code:'id',name:'id',hidden:true},{code:'storeId',name:'',hidden:true },{code:'storeName',name:'店铺名称',add:true,type:'select',selectData:[] },
                 {code:'carName',name:'车辆名称',add:true,type:'select',selectData:[] }, {code:'carNum',name:'车辆数量',add:true},
             ],
             tableData:[],
@@ -27,7 +27,7 @@ export default class storeAndCar extends React.Component {
         globalStore.hideAlert();
         this.initTable();
         this.getCar();
-
+        this.getStore();
     }
 
     initTable = () =>{
@@ -44,10 +44,18 @@ export default class storeAndCar extends React.Component {
 
     getCar =()=>{
         let rowsName = this.state.rowsName ;
-
         adminStore.getCarList((res)=>{
+            rowsName[3].selectData = res || [];
+            this.setState({
+                rowsName
+            })
+        })
+    }
 
-            rowsName[3].selectData = res ;
+    getStore =()=>{
+        let rowsName = this.state.rowsName ;
+        adminStore.getStoreList((res)=>{
+            rowsName[2].selectData = res ||[] ;
             this.setState({
                 rowsName
             })
@@ -102,7 +110,7 @@ export default class storeAndCar extends React.Component {
         if(this.state.operationType =="add"){
             data.storeStar = parseInt( data.storeStar);
             data.storePhone = parseInt( data.storePhone);
-            data.storeId = new Date().getTime();
+            data.id = new Date().getTime();
             adminStore.saveStore(data,()=>{
                 this.closeModal();
             })

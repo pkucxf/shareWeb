@@ -53,6 +53,14 @@ export default class ModalView extends React.Component {
 
     }
 
+    handleChange = (obj,data) =>{
+        let modalObj = this.state.modalObj;
+        modalObj[obj] = data ;
+        this.setState({
+            modalObj
+        })
+    }
+
     saveModal =()=>{
         this.props.saveModal(this.state.modalObj)
     }
@@ -118,7 +126,8 @@ export default class ModalView extends React.Component {
                                             ):(
                                                 m.type == 'select' ? (<div>
                                                     <Select options={m.selectData} isMulti    className="basic-multi-select"
-                                                            classNamePrefix="select"/>
+                                                            classNamePrefix="select" onChange={this.handleChange.bind(this,m.code)}
+                                                    />
                                                 </div>):(
                                                     <input type="text" className={"form-control"} onChange={this.setInput.bind(this,m.code)} value={this.state.modalObj[m.code]}/>
                                                 )
