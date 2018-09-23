@@ -6,7 +6,7 @@ import Util from '../../common/utils';
 import {Button,Modal} from 'react-bootstrap';
 import Top from '../../components/share/Top';
 import Foot from '../../components/share/Foot';
-import CarList from '../../components/share/CarList';
+import OrderDetailComp from  '../../components/share/OrderDetailComp';
 
 @observer
 export default class OrderDetail extends React.Component {
@@ -28,7 +28,7 @@ export default class OrderDetail extends React.Component {
         return(
             <div className="share-box">
                 <Top/>
-
+                <OrderDetailComp/>
                 <Foot/>
 
             </div>
