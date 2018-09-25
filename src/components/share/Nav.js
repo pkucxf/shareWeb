@@ -13,7 +13,7 @@ export default class Nav extends React.Component {
                 {id:2,name:'车型查询',url:'#/car'},
                 {id:3,name:'营业网点',url:'#/store'},
                 {id:4,name:'企业服务',url:''},
-                {id:5,name:'接送服务',url:''},
+                {id:5,name:'接送服务',url:'#/relay'},
                 {id:6,name:'精彩活动',url:''},
                 ]
         }
