@@ -24,8 +24,17 @@ export default class Foot extends React.Component {
     render(){
 
         return(
-            <div className="share-head">
+            <div className="share-foot">
+                <div className="share-foot-img">
+                   <ul>
+                       <li>300多个城市</li>
+                       <li>400个服务网点</li>
+                       <li>200余车型</li>
+                       <li>24小时服务</li>
+                       <li>服务广泛</li>
 
+                   </ul>
+                </div>
 
             </div>
 

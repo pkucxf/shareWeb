@@ -23,6 +23,8 @@ import OrderContainer from 'bundle-loader?lazy&name=app-[name]!./containers/shar
 import OrderListContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/OrderList';
 import OrderDetailContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/OrderDetail';
 import StoreContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/Store';
+import RelayContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/Relay';
+
 
 const Login  = (props) => (<Bundle load={LoginContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const Home  = (props) => (<Bundle load={HomeContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
@@ -32,6 +34,9 @@ const Order  = (props) => (<Bundle load={OrderContainer} {...props}>{ (Page) => 
 const OrderList  = (props) => (<Bundle load={OrderListContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const OrderDetail  = (props) => (<Bundle load={OrderDetailContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const Store  = (props) => (<Bundle load={StoreContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
+const Relay  = (props) => (<Bundle load={RelayContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
+
+
 /*admin*/
 import aHomeContainer from 'bundle-loader?lazy&name=app-[name]!./containers/shareAdmin/adminHome';
 import aCarContainer from 'bundle-loader?lazy&name=app-[name]!./containers/shareAdmin/carType';
@@ -78,12 +83,20 @@ ReactDom.render(
         <Route path='/order' component={Order}/>
         <Route path='/orderList' component={OrderList}/>
         <Route path='/orderDetail' component={OrderDetail}/>
+        <Route path='/relay' component={Relay}/>
 
-        <Route path ='/a/home' component={aHome} />
-        <Route path ='/a/carType' component={aCar} />
-        <Route path ='/a/userList' component={aUserList} />
-        <Route path ='/a/storeList' component={aStoreList} />
-        <Route path ='/a/storeAndCar' component={aStoreAndCar} />
+        <Route path='/a/' >
+            <Route path ='home' component={aHome} />
+            <Route path ='carType' component={aCar} />
+            <Route path ='userList' component={aUserList} />
+            <Route path ='storeList' component={aStoreList} />
+            <Route path ='storeAndCar' component={aStoreAndCar} />
+        </Route>
+
+
+
+
+
     </Route>
   </Router>,
   document.getElementById('root')

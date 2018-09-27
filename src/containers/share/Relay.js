@@ -1,3 +1,5 @@
+/**接送服务**/
+
 import React from 'react';
 import {observer} from 'mobx-react';
 import globalStore from '../../stores/GlobalStore';
@@ -6,10 +8,13 @@ import Util from '../../common/utils';
 import {Button,Modal} from 'react-bootstrap';
 import Top from '../../components/share/Top';
 import Foot from '../../components/share/Foot';
-import OrderDetailComp from  '../../components/share/OrderDetailComp';
+import Nav from '../../components/share/Nav';
+import ReplayCom from '../../components/share/RelayCom';
+import RelayCom from "@/components/share/RelayCom";
+
 
 @observer
-export default class OrderDetail extends React.Component {
+export default class Relay extends React.Component {
     constructor(props) {
         super(props);
         this.state ={
@@ -27,8 +32,8 @@ export default class OrderDetail extends React.Component {
     render(){
         return(
             <div className="share-box">
-                <Top/>
-                <OrderDetailComp/>
+                <Nav/>
+                <RelayCom/>
                 <Foot/>
 
             </div>

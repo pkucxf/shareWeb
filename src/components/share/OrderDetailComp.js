@@ -12,7 +12,7 @@ export default class OrderDetailComp extends React.Component {
     }
 
     componentWillMount =()=>{
-        globalStore.hideAlert();
+        //globalStore.hideAlert();
 
     }
 

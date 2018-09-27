@@ -6,7 +6,6 @@ import Util from '../../common/utils';
 import {Button,Modal} from 'react-bootstrap';
 import Top from '../../components/share/Top';
 import Foot from '../../components/share/Foot';
-import CarList from '../../components/share/CarList';
 
 @observer
 export default class Order extends React.Component {
