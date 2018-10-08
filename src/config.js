@@ -7,6 +7,8 @@ if(window.SERVICESURL!=''){
 var Config = {
     share:{
         register:serverUrl + 'web/register',
+        login:serverUrl + 'web/login',
+        getCar:serverUrl+'car/getCarList',
     },
     shareAdmin:{
         getUserInfo:serverUrl +'admin/getUserInfo',
@@ -15,6 +17,7 @@ var Config = {
         getCarType:serverUrl+'admin/getCarType',
         saveCarType:serverUrl + 'admin/addCarType',
         delCarType:serverUrl + 'admin/delCarType',
+        updateCarType:serverUrl + 'admin/updateCarType',
         getStore:serverUrl + 'admin/getStore',
         saveStore:serverUrl+'admin/addStore',
         delStore:serverUrl +'admin/delStore',

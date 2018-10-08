@@ -88,13 +88,12 @@ export default class carType extends React.Component {
 
     saveModal = (data)=>{
         if(this.state.operationType =="add"){
-            data.def0 = data.img ;
             adminStore.saveCarType(data,()=>{
                 this.closeModal();
                 this.initTable();
             })
         }else{
-            adminStore.updateCoinPrice(data,()=>{
+            adminStore.updateCarType(data,()=>{
                 this.closeModal();
             })
         }

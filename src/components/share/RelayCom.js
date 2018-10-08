@@ -35,7 +35,7 @@ export default class RelayCom extends React.Component {
                         <div className="share-relay-img"></div>
                         <div className="share-relay-right"></div>
                     </div>
-                    <div className={}>
+                    <div className="">
 
                     </div>
 

@@ -44,7 +44,7 @@ export default class Nav extends React.Component {
                     <ul>
                         {this.state.navList.map((m,n)=>{
                             return(
-                                <li key={n} onClick={this.changeNav} className={n==0?'active':''}>
+                                <li key={n} onClick={this.changeNav} className={n== this.props.nav ?'active':''}>
                                     <a href={m.url}>{m.name}</a>
                                 </li>
                             )

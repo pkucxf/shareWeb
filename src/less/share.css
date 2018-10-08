@@ -1033,6 +1033,7 @@ p.error {
 .share-car .share-car-box .share-car-ul li .share-car-intro {
   margin-top: 23px;
   padding: 0 5px ;
+  border-top: 1px solid #f7f1f1;
 }
 .share-car .share-car-box .share-car-ul li .share-car-intro:hover {
   background: #23b7b7;
@@ -1044,8 +1045,9 @@ p.error {
   line-height: 30px;
 }
 .share-car .share-car-box .share-car-ul li .share-car-intro p {
-  font-size: 14px;
+  font-size: 12px;
   line-height: 30px;
+  color: #7b7b7b;
 }
 /*订单详情**/
 .share-detail {

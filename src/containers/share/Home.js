@@ -26,7 +26,7 @@ export default class Home extends React.Component {
     render(){
         return(
             <div className="share-box">
-                <Nav/>
+                <Nav nav={0}/>
                 <Banner />
                 <HotCar/>
                 <HomeActive />
