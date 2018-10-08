@@ -7,6 +7,7 @@ import {Button,Modal} from 'react-bootstrap';
 import Top from '../../components/share/Top';
 import Foot from '../../components/share/Foot';
 import StoreList from '../../components/share/StoreList';
+import Nav from "../../components/share/Nav";
 
 @observer
 export default class Store extends React.Component {
@@ -27,8 +28,8 @@ export default class Store extends React.Component {
     render(){
         return(
             <div className="share-box">
-                <Top/>
-                    <StoreList/>
+                <Nav nav={3}/>
+                <StoreList/>
                 <Foot/>
 
             </div>

@@ -1049,6 +1049,52 @@ p.error {
   line-height: 30px;
   color: #7b7b7b;
 }
+/**店铺列表**/
+.share-store {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+}
+.share-store .share-store-ul li {
+  margin-bottom: 20px;
+}
+.share-store .share-store-ul li p {
+  font-size: 18px;
+  line-height: 40px;
+}
+.share-store .share-store-ul li .share-store-info {
+  color: #7b7b7b;
+  font-size: 14px;
+}
+.share-store .share-store-ul li .share-store-info .share-store-address {
+  line-height: 30px ;
+}
+.share-store .share-store-ul li .share-store-info .share-store-address span {
+  width: 16px;
+  height: 16px;
+  background: url(images/address.png) no-repeat;
+  float: left;
+  margin: 8px 6px 0 0;
+}
+.share-store .share-store-ul li .share-store-info .share-store-detail .share-store-phone {
+  line-height: 30px;
+  margin-right: 50px;
+}
+.share-store .share-store-ul li .share-store-info .share-store-detail .share-store-phone span {
+  margin-right: 6px;
+}
+.share-store .share-store-ul li .share-store-info .share-store-detail .share-store-star {
+  line-height: 30px;
+}
+.share-store .share-store-ul li .share-store-info .share-store-detail .share-store-star span {
+  width: 16px;
+  height: 16px;
+  margin: 7px 5px 0 4px;
+  background: url(images/star.png) no-repeat;
+  float: right;
+}
 /*订单详情**/
 .share-detail {
   border: 1px solid #c5c5c5;
