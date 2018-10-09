@@ -23,7 +23,9 @@ import OrderContainer from 'bundle-loader?lazy&name=app-[name]!./containers/shar
 import OrderListContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/OrderList';
 import OrderDetailContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/OrderDetail';
 import StoreContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/Store';
+import ActiveContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/Active';
 import RelayContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/Relay';
+import DrivingContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/Driving';
 
 
 const Login  = (props) => (<Bundle load={LoginContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
@@ -34,7 +36,9 @@ const Order  = (props) => (<Bundle load={OrderContainer} {...props}>{ (Page) => 
 const OrderList  = (props) => (<Bundle load={OrderListContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const OrderDetail  = (props) => (<Bundle load={OrderDetailContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const Store  = (props) => (<Bundle load={StoreContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
+const Active  = (props) => (<Bundle load={ActiveContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const Relay  = (props) => (<Bundle load={RelayContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
+const Driving  = (props) => (<Bundle load={DrivingContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 
 
 /*admin*/
@@ -84,6 +88,8 @@ ReactDom.render(
         <Route path='/orderList' component={OrderList}/>
         <Route path='/orderDetail' component={OrderDetail}/>
         <Route path='/relay' component={Relay}/>
+        <Route path='/active' component={Active}/>
+        <Route path='/driving' component={Driving}/>
 
         <Route path='/a/' >
             <Route path ='home' component={aHome} />

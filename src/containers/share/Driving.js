@@ -1,5 +1,3 @@
-/**接送服务**/
-
 import React from 'react';
 import {observer} from 'mobx-react';
 import globalStore from '../../stores/GlobalStore';
@@ -9,18 +7,14 @@ import {Button,Modal} from 'react-bootstrap';
 import Top from '../../components/share/Top';
 import Foot from '../../components/share/Foot';
 import Nav from '../../components/share/Nav';
-import ReplayCom from '../../components/share/RelayCom';
-import RelayCom from "@/components/share/RelayCom";
-
+import CarList from '../../components/share/CarList';
 
 @observer
-export default class Relay extends React.Component {
+export default class Driving extends React.Component {
     constructor(props) {
         super(props);
         this.state ={
-            registerParam:{
 
-            }
         }
     }
 
@@ -32,10 +26,8 @@ export default class Relay extends React.Component {
     render(){
         return(
             <div className="share-box">
-                <Nav nav={5}/>
-                <RelayCom/>
+                <Nav nav={1}/>
                 <Foot/>
-
             </div>
         )
 

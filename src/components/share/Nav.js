@@ -9,12 +9,11 @@ export default class Nav extends React.Component {
         this.state ={
             navList:[
                 {id:0,name:'首页',url:'#/home'},
-                {id:1,name:'自驾租车',url:''},
+                {id:1,name:'自驾租车',url:'#/driving'},
                 {id:2,name:'车型查询',url:'#/car'},
                 {id:3,name:'营业网点',url:'#/store'},
-                {id:4,name:'企业服务',url:''},
                 {id:5,name:'接送服务',url:'#/relay'},
-                {id:6,name:'精彩活动',url:''},
+                {id:6,name:'精彩活动',url:'#/active'},
                 ]
         }
     }
@@ -44,7 +43,7 @@ export default class Nav extends React.Component {
                     <ul>
                         {this.state.navList.map((m,n)=>{
                             return(
-                                <li key={n} onClick={this.changeNav} className={n== this.props.nav ?'active':''}>
+                                <li key={n} onClick={this.changeNav} className={m.id== this.props.nav ?'active':''}>
                                     <a href={m.url}>{m.name}</a>
                                 </li>
                             )

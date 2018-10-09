@@ -888,7 +888,7 @@ p.error {
   margin: 0 auto;
 }
 .share-nav ul li {
-  width: 13%;
+  width: 16%;
   text-align: center;
   line-height: 40px;
 }
@@ -1059,6 +1059,7 @@ p.error {
 }
 .share-store .share-store-ul li {
   margin-bottom: 20px;
+  width: 100%;
 }
 .share-store .share-store-ul li p {
   font-size: 18px;
@@ -1094,6 +1095,22 @@ p.error {
   margin: 7px 5px 0 4px;
   background: url(images/star.png) no-repeat;
   float: right;
+}
+/**精彩活动**/
+.share-active-0 {
+  background: url(images/activeBanner.png) no-repeat center center;
+  width: 100%;
+  height: 713px;
+}
+.share-active-1 {
+  background: url(images/active0.png) no-repeat center center;
+  width: 100%;
+  height: 1127px;
+}
+.share-active-2 {
+  background: url(images/active1.png) no-repeat center center;
+  width: 100%;
+  height: 1066px;
 }
 /*订单详情**/
 .share-detail {
