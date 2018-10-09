@@ -6,7 +6,7 @@ import Util from '../../common/utils';
 import {Button,Modal} from 'react-bootstrap';
 import localforage from 'localforage';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-import ModalView from "@/components/adminManage/material/ModalView";
+import ModalView from "@/components/adminManage/material/ModalViewTable";
 import shareAdminStore from '../../stores/share/shareAdminStore'
 import HeadBox from "../../components/shareAdmin/adminHead";
 import Menu from "../../components/shareAdmin/adminMenu";

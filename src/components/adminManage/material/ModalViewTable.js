@@ -4,13 +4,15 @@ import _ from 'lodash';
 import Config from '@/config';
 import globalStore from '@/stores/GlobalStore';
 import FileUpload from '../material/Upload';
+import Select from 'react-select';
 
 export default class ModalView extends React.Component {
 
     constructor(props) {
         super(props);
         this.state={
-            modalObj:{}
+            modalObj:{},
+            carList:[{id:'',carName:'',carNum:''}],
         }
     }
 
@@ -19,37 +21,10 @@ export default class ModalView extends React.Component {
         this.setState({
             modalObj:props.data
         })
-
-    }
-
-    setInput =(obj,e)=>{
-        let modalObj = this.state.modalObj;
-        modalObj[obj] = e.target.value ;
-        this.setState({
-            modalObj
-        })
-
-    }
-
-    setTime =(obj,value, formattedValue)=>{
-        let modalObj = this.state.modalObj;
-        modalObj[obj] = formattedValue ;
-        this.setState({
-            modalObj
-        })
     }
 
     close =()=>{
         this.props.closeModal();
-    }
-
-    uploadSuccess =(obj ,data )=>{
-        let modalObj = this.state.modalObj;
-        modalObj[obj] = data.data ;
-        this.setState({
-            modalObj
-        })
-
     }
 
     saveModal =()=>{
@@ -58,6 +33,7 @@ export default class ModalView extends React.Component {
 
     render(){
         const {data} = this.props ;
+
         return(
             <Modal show={this.props.show} bsSize="large" onHide={this.close}>
                 <Modal.Header closeButton>
@@ -65,7 +41,45 @@ export default class ModalView extends React.Component {
                 </Modal.Header>
 
                 <Modal.Body>
+                    <div className="row">
+                        <div className="col-md-2">店铺名称：</div>
+                        <div className="col-md-4">
+                            <Select options={data[3].selectData} isMulti={false}    className="basic-multi-select"
+                                    classNamePrefix="select"
+                            />
+                        </div>
 
+                        <table>
+                            <th>
+                                <td>序号</td>
+                                <td>车辆名称</td>
+                                <td>数量</td>
+                                <td>操作</td>
+                            </th>
+                            <tr>
+                                <td></td>
+                            </tr>
+                        </table>
+
+                    </div>
+
+                    <div>
+
+                        {/*{this.props.rowsName.map((m,n)=>{
+                            if(m.add){
+                                m.type == 'select' ? (
+                                    <div>
+                                        <Select options={m.selectData} isMulti={false}    className="basic-multi-select"
+                                                classNamePrefix="select" onChange={this.handleChange.bind(this,m.code)}
+                                        />
+                                 </div>
+                                ):(<input/>)
+
+                            }
+                            }
+                            )
+                        }*/}
+                    </div>
 
                 </Modal.Body>
 
