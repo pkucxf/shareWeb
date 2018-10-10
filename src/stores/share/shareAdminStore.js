@@ -255,9 +255,7 @@ export default class  shareAdminStore{
                 this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
             }
         })
-
     }
-
     //删除店铺
     @action delStore(param , callback){
         this.globalStore.hideAlert();
@@ -381,7 +379,30 @@ export default class  shareAdminStore{
         })
     }
 
-
+    //保存店铺车辆信息
+    @action saveStoreAndCar(param,callback){
+        this.globalStore.hideAlert();
+        let that = this ;
+        $.ajax({
+            type: "POST",
+            url: Config.shareAdmin.saveCarAndStore,
+            data:JSON.stringify(param),
+            contentType: "application/json",
+            success: data => {
+                if (data.code == 0 ) {
+                    if(typeof callback == "function"){
+                        callback(data.data)
+                    }
+                    that.globalStore.showInfo("保存成功！")
+                } else {
+                    that.globalStore.showError(data.error ? data.error : "操作失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
 
 
 

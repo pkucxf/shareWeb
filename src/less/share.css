@@ -1207,4 +1207,34 @@ p.error {
   font-weight: bold;
   color: #32C2CD;
 }
+/**店铺车辆管理**/
+.modal-table {
+  font-family: verdana, arial, sans-serif;
+  font-size: 11px;
+  color: #333333;
+  border-width: 1px;
+  border-color: #ccc;
+  border-collapse: collapse;
+  width: 80%;
+  margin: 10px 10%;
+}
+.modal-table th {
+  border-width: 1px;
+  padding: 8px;
+  border-style: solid;
+  border-color: #ccc;
+  background-color: #dedede;
+  text-align: center;
+}
+.modal-table td {
+  border-width: 1px;
+  padding: 8px;
+  border-style: solid;
+  border-color: #ccc;
+  background-color: #ffffff;
+  text-align: center;
+}
+.lh40 {
+  line-height: 40px;
+}
 /*# sourceMappingURL=share.css.map */

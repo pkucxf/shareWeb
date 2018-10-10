@@ -108,10 +108,7 @@ export default class storeAndCar extends React.Component {
 
     saveModal = (data)=>{
         if(this.state.operationType =="add"){
-            data.storeStar = parseInt( data.storeStar);
-            data.storePhone = parseInt( data.storePhone);
-            data.id = new Date().getTime();
-            adminStore.saveStore(data,()=>{
+            adminStore.saveStoreAndCar(data,()=>{
                 this.closeModal();
             })
 

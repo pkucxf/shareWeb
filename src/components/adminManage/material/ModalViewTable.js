@@ -5,6 +5,7 @@ import Config from '@/config';
 import globalStore from '@/stores/GlobalStore';
 import FileUpload from '../material/Upload';
 import Select from 'react-select';
+import Banner from "@/components/share/Banner";
 
 export default class ModalView extends React.Component {
 
@@ -12,7 +13,11 @@ export default class ModalView extends React.Component {
         super(props);
         this.state={
             modalObj:{},
-            carList:[{id:'',carName:'',carNum:''}],
+            inputvalue:"",
+            inputvalue1:"",
+            selectvalue0:"",
+            selectvalue1:"",
+            carList:[],
         }
     }
 
@@ -28,11 +33,57 @@ export default class ModalView extends React.Component {
     }
 
     saveModal =()=>{
-        this.props.saveModal(this.state.modalObj)
+        let param = {
+            storeName:this.state.selectvalue0?this.state.selectvalue0.label:"",
+            carList:this.state.carList
+        };
+        this.props.saveModal(param)
+    }
+
+    setInput = (e)=>{
+        let val = e.target.value ;
+        this.setState({
+            inputvalue:val
+        })
+    }
+    setInput1 = (e)=>{
+        let val = e.target.value ;
+        this.setState({
+            inputvalue1:val
+        })
+    }
+
+    handleChange0 = (data) =>{
+        this.setState({
+            selectvalue0:data
+        })
+    }
+    handleChange1 = (data) =>{
+        this.setState({
+            selectvalue1:data
+        })
+    }
+
+    addTable = () =>{
+        let carList = this.state.carList ;
+        let selectvalue1 = this.state.selectvalue1 , inputvalue = this.state.inputvalue;
+        carList.push({id:""+new Date().getTime()+"",carName:selectvalue1.label,carNum:inputvalue});
+        this.setState({carList})
+    }
+
+    delTableRow = (id) =>{
+        let carList = this.state.carList
+        _.remove(carList,(n)=>{
+            return n.id == id ;
+        })
+        this.setState({
+            carList
+        })
     }
 
     render(){
         const {data} = this.props ;
+        const {rowsName} = this.props ;
 
         return(
             <Modal show={this.props.show} bsSize="large" onHide={this.close}>
@@ -42,26 +93,58 @@ export default class ModalView extends React.Component {
 
                 <Modal.Body>
                     <div className="row">
-                        <div className="col-md-2">店铺名称：</div>
-                        <div className="col-md-4">
-                            <Select options={data[3].selectData} isMulti={false}    className="basic-multi-select"
-                                    classNamePrefix="select"
+                        <div className="col-md-2 tr lh40">店铺名称：</div>
+                        <div className="col-md-3">
+                            <Select options={rowsName[2].selectData} isMulti={false}    className="basic-multi-select"
+                                    classNamePrefix="select" onChange={this.handleChange0}
                             />
                         </div>
-
-                        <table>
-                            <th>
-                                <td>序号</td>
-                                <td>车辆名称</td>
-                                <td>数量</td>
-                                <td>操作</td>
-                            </th>
-                            <tr>
-                                <td></td>
-                            </tr>
-                        </table>
+                    </div>
+                    <div className="row mt10">
+                        <div className="col-md-2 tr lh40">车辆：</div>
+                        <div className="col-md-3">
+                            <Select options={rowsName[3].selectData} isMulti={false}    className="basic-multi-select"
+                                    classNamePrefix="select" onChange={this.handleChange1}
+                            />
+                        </div>
+                        <div className="col-md-1 tr lh40">数量：</div>
+                        <div className="col-md-2">
+                            <input type="text" className={"form-control"} value={this.state.inputvalue} onChange={this.setInput}/>
+                        </div>
+                        <div className="col-md-2 tr lh40">价格（元/天）：</div>
+                        <div className="col-md-2">
+                            <input type="text" className={"form-control"} value={this.state.inputvalue1} onChange={this.setInput1}/>
+                        </div>
+                        <div className="col-md-1 mt10">
+                            <Button  className ="fr" onClick={this.addTable}>新增</Button>
+                        </div>
 
                     </div>
+                    <div className={"row mt10"}>
+
+                    </div>
+
+                    <table className="modal-table">
+                        <tr>
+                            <th>序号</th>
+                            <th>车辆名称</th>
+                            <th>数量</th>
+                            <th>价格（元/天）</th>
+                            <th>操作</th>
+                        </tr>
+                        {this.state.carList.map((m,n)=>{
+                            return(
+                                <tr key={n}>
+                                    <td>{n+1}</td>
+                                    <td>{m.carName}</td>
+                                    <td>{m.carNum}</td>
+                                    <td>{m.carNum}</td>
+                                    <td><span className={"glyphicon glyphicon-trash"} onClick={this.delTableRow.bind(this,m.id)}></span></td>
+                                </tr>
+                            )
+                        })}
+
+                    </table>
 
                     <div>
 
