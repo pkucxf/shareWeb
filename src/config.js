@@ -10,7 +10,9 @@ var Config = {
         login:serverUrl + 'web/login',
         getCar:serverUrl+'car/getCarList',
         getStore:serverUrl + 'store/getStoreList',
-        getDrivingList:serverUrl +'driving/getList'
+        getDrivingList:serverUrl +'driving/getList',
+        getCarInfo:serverUrl +'driving/getCarInfo',
+        getStoreInfo:serverUrl +'driving/getStoreInfo'
     },
     shareAdmin:{
         getUserInfo:serverUrl +'admin/getUserInfo',

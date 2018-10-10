@@ -1114,16 +1114,27 @@ p.error {
 }
 /*订单详情**/
 .share-detail {
-  border: 1px solid #c5c5c5;
   overflow: hidden;
 }
 .share-detail .share-detail-left {
   float: left;
   width: 75%;
+  border: 1px solid #c5c5c5;
+  height: 300px;
+}
+.share-detail .share-detail-left .share-detail-left-img {
+  margin: 20px;
+}
+.share-detail .share-detail-left .share-detail-left-info {
+  width: 60%;
+  float: left;
+  overflow: hidden;
 }
 .share-detail .share-detail-right {
   float: right;
   width: 24%;
+  border: 1px solid #c5c5c5;
+  height: 300px;
 }
 /**接送服务**/
 .share-relay {
@@ -1144,6 +1155,7 @@ p.error {
 .share-foot {
   width: 1180px;
   margin: 0 auto;
+  overflow: hidden;
 }
 .share-foot .share-foot-img {
   margin-top: 20px;
@@ -1236,5 +1248,40 @@ p.error {
 }
 .lh40 {
   line-height: 40px;
+}
+/**车辆预订**/
+.share-driving {
+  width: 90%;
+  height: 180px;
+  margin: 20px;
+}
+.share-driving li {
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+}
+.share-driving li .share-driving-img {
+  width: 300px;
+  height: 200px;
+}
+.share-driving li .share-driving-car {
+  width: 500px;
+  margin: 20px 0 0 20px;
+}
+.share-driving li .share-driving-car .share-driving-name h5 {
+  font-size: 16px;
+  color: #666;
+  height: 50px;
+  line-height: 50px;
+  font-weight: bold;
+}
+.share-driving li .share-driving-price label {
+  color: red;
+  margin-left: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+.share-driving li .share-driving-price span {
+  font-size: 12px;
+  margin-left: 20px;
 }
 /*# sourceMappingURL=share.css.map */

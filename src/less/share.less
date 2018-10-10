@@ -617,15 +617,27 @@
 }
 /*订单详情**/
 .share-detail{
-  border:1px solid #c5c5c5;
+
   overflow: hidden;
   .share-detail-left{
     .fl;
     width:75%;
+    border:1px solid #c5c5c5;
+    height: 300px;
+    .share-detail-left-img{
+      margin: 20px;
+    }
+    .share-detail-left-info{
+      width: 60%;
+      .fl;
+      overflow: hidden;
+    }
   }
   .share-detail-right{
     .fr;
     width: 24%;
+    border:1px solid #c5c5c5;
+    height: 300px;
   }
 }
 
@@ -681,6 +693,7 @@
 /**尾部数据**/
 .share-foot{
   .w1180;
+  overflow: hidden;
   .share-foot-img{
     margin-top:20px;
     height: 80px;
@@ -780,4 +793,46 @@
 }
 .lh40{
   line-height: 40px;
+}
+
+/**车辆预订**/
+.share-driving{
+  width: 90%;
+  height: 180px;
+  margin: 20px;
+  li{
+    width:100%;
+    border-bottom: 1px solid #ccc;
+    .share-driving-img{
+      width: 300px;
+      height: 200px;
+      img{
+      }
+    }
+    .share-driving-car{
+      width: 500px;
+      margin: 20px 0 0 20px;
+      .share-driving-name{
+        h5{
+          font-size: 16px;
+          color: #666;
+          height: 50px;
+          line-height: 50px;
+          font-weight: bold;
+        }
+      }
+    }
+    .share-driving-price{
+      label{
+        color: red;
+        margin-left: 10px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+      span{
+        font-size: 12px;
+        margin-left: 20px;
+      }
+    }
+  }
 }

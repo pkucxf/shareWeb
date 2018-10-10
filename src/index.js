@@ -21,7 +21,6 @@ import RegisterContainer from 'bundle-loader?lazy&name=app-[name]!./containers/s
 import CarContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/Car';
 import OrderContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/Order';
 import OrderListContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/OrderList';
-import OrderDetailContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/OrderDetail';
 import StoreContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/Store';
 import ActiveContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/Active';
 import RelayContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/Relay';
@@ -34,7 +33,6 @@ const Register  = (props) => (<Bundle load={RegisterContainer} {...props}>{ (Pag
 const Car  = (props) => (<Bundle load={CarContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const Order  = (props) => (<Bundle load={OrderContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const OrderList  = (props) => (<Bundle load={OrderListContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
-const OrderDetail  = (props) => (<Bundle load={OrderDetailContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const Store  = (props) => (<Bundle load={StoreContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const Active  = (props) => (<Bundle load={ActiveContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const Relay  = (props) => (<Bundle load={RelayContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
@@ -84,9 +82,8 @@ ReactDom.render(
         <Route path='/register' component={Register}/>
         <Route path='/car' component={Car}/>
         <Route path='/store' component={Store}/>
-        <Route path='/order' component={Order}/>
+        <Route path='/order/:storeId/:carId' component={Order}/>
         <Route path='/orderList' component={OrderList}/>
-        <Route path='/orderDetail' component={OrderDetail}/>
         <Route path='/relay' component={Relay}/>
         <Route path='/active' component={Active}/>
         <Route path='/driving' component={Driving}/>

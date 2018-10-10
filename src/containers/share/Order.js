@@ -6,6 +6,7 @@ import Util from '../../common/utils';
 import {Button,Modal} from 'react-bootstrap';
 import Top from '../../components/share/Top';
 import Foot from '../../components/share/Foot';
+import OrderDetail from '../../components/share/OrderDetail';
 
 @observer
 export default class Order extends React.Component {
@@ -27,6 +28,8 @@ export default class Order extends React.Component {
         return(
             <div className="share-box">
                 <Top/>
+
+                <OrderDetail routerParam = { this.props.router.params} />
                 <Foot/>
 
             </div>
