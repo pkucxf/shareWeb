@@ -7,7 +7,7 @@ import {Button,Modal} from 'react-bootstrap';
 import Top from '../../components/share/Top';
 import Foot from '../../components/share/Foot';
 import Nav from '../../components/share/Nav';
-import CarList from '../../components/share/CarList';
+import DrivingList from '../../components/share/DrivingList';
 
 @observer
 export default class Driving extends React.Component {
@@ -27,6 +27,7 @@ export default class Driving extends React.Component {
         return(
             <div className="share-box">
                 <Nav nav={1}/>
+                <DrivingList />
                 <Foot/>
             </div>
         )
