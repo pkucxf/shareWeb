@@ -17,7 +17,7 @@ export default class storeAndCar extends React.Component {
         super(props);
         this.state ={
             rowsName: [{code:'id',name:'id',hidden:true},{code:'storeId',name:'',hidden:true },{code:'storeName',name:'店铺名称',add:true,type:'select',selectData:[] },
-                {code:'carName',name:'车辆名称',add:true,type:'select',selectData:[] }, {code:'carNum',name:'车辆数量',add:true},
+                {code:'carName',name:'车辆名称',add:true,type:'select',selectData:[] }, {code:'carNum',name:'车辆数量',add:true},{code:'def0',name:'元/辆/天',add:true}
             ],
             tableData:[],
         }
@@ -92,7 +92,7 @@ export default class storeAndCar extends React.Component {
     }
     deleteRows =(rows)=>{
         globalStore.showTipsModal("是否删除","small",()=>{},()=>{
-            adminStore.delStore(rows,()=>{
+            adminStore.delStoreAndCar(rows,()=>{
                 this.initTable()
             });
         })
@@ -110,6 +110,7 @@ export default class storeAndCar extends React.Component {
         if(this.state.operationType =="add"){
             adminStore.saveStoreAndCar(data,()=>{
                 this.closeModal();
+                this.initTable();
             })
 
         }else{
@@ -145,8 +146,6 @@ export default class storeAndCar extends React.Component {
                                 (cell,row)=>{
                                     return(
                                         <div className="a-operation-box">
-                                            <span className="mr10 glyphicon glyphicon-eye-open" onClick={this.previewRows.bind(this,row)} title="查看"></span>
-                                            <span className="mr10 glyphicon glyphicon-edit" onClick={this.editRows.bind(this,row)} title="编辑"></span>
                                             <span onClick={this.deleteRows.bind(this,row)} className="glyphicon glyphicon-trash" title="删除"></span>
                                         </div>
                                     )

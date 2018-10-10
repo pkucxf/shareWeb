@@ -405,5 +405,29 @@ export default class  shareAdminStore{
     }
 
 
+    @action delStoreAndCar(param , callback){
+        this.globalStore.hideAlert();
+        let that = this ;
+        $.ajax({
+            type: "GET",
+            url:Config.shareAdmin.delCarAndStore+ '?id='+param.id,
+            contentType: "application/json",
+            success: data => {
+                if (data.code == 0 ) {
+                    if(typeof callback == "function"){
+                        callback(data.data)
+                    }
+
+                } else {
+                    that.globalStore.showError(data.error ? data.error : "操作失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
+
+
 
 }

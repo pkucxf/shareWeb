@@ -23,6 +23,16 @@ export default class ModalView extends React.Component {
 
 
     componentWillReceiveProps(props){
+        if(props.type == 'add'){
+            this.setState({
+                inputvalue:"",
+                inputvalue1:"",
+                selectvalue0:"",
+                selectvalue1:"",
+                carList:[],
+            })
+        }
+
         this.setState({
             modalObj:props.data
         })
@@ -35,6 +45,7 @@ export default class ModalView extends React.Component {
     saveModal =()=>{
         let param = {
             storeName:this.state.selectvalue0?this.state.selectvalue0.label:"",
+            storeId:this.state.selectvalue0?this.state.selectvalue0.value:"",
             carList:this.state.carList
         };
         this.props.saveModal(param)
@@ -66,8 +77,8 @@ export default class ModalView extends React.Component {
 
     addTable = () =>{
         let carList = this.state.carList ;
-        let selectvalue1 = this.state.selectvalue1 , inputvalue = this.state.inputvalue;
-        carList.push({id:""+new Date().getTime()+"",carName:selectvalue1.label,carNum:inputvalue});
+        let selectvalue1 = this.state.selectvalue1 , inputvalue = this.state.inputvalue , inputvalue1 = this.state.inputvalue1;
+        carList.push({id:""+new Date().getTime()+"",carName:selectvalue1.label,carId:selectvalue1.value,carNum:inputvalue,carPrice:inputvalue1});
         this.setState({carList})
     }
 
@@ -138,7 +149,7 @@ export default class ModalView extends React.Component {
                                     <td>{n+1}</td>
                                     <td>{m.carName}</td>
                                     <td>{m.carNum}</td>
-                                    <td>{m.carNum}</td>
+                                    <td>{m.carPrice}</td>
                                     <td><span className={"glyphicon glyphicon-trash"} onClick={this.delTableRow.bind(this,m.id)}></span></td>
                                 </tr>
                             )
