@@ -55,7 +55,7 @@ export default class DrivingList extends React.Component {
                                         </div>
                                     </div>
                                     <div className="fr mt50">
-                                        <Link to={"/order/" + m.storeId + "/" + m.carId }> <Button  bsStyle="warning" >立即预定</Button></Link>
+                                        <Link to={"/order/" + m.storeId + "/" + m.carId  + "/"+ m.id}> <Button  bsStyle="warning" >立即预定</Button></Link>
                                     </div>
 
                                 </li>

@@ -77,12 +77,12 @@ const requireAuth = (nextState, replace, next) => {
 ReactDom.render(
   <Router history={hashHistory}>
     <Route path="/" component={App}>
-        <IndexRoute component={Login}/>
+        <IndexRoute component={Home}/>
         <Route path='/home' component={Home}/>
         <Route path='/register' component={Register}/>
         <Route path='/car' component={Car}/>
         <Route path='/store' component={Store}/>
-        <Route path='/order/:storeId/:carId' component={Order}/>
+        <Route path='/order/:storeId/:carId/:id' component={Order}/>
         <Route path='/orderList' component={OrderList}/>
         <Route path='/relay' component={Relay}/>
         <Route path='/active' component={Active}/>

@@ -1116,6 +1116,20 @@ p.error {
 .share-detail {
   overflow: hidden;
 }
+.share-detail .share-date-style {
+  width: 200px;
+  height: 35px;
+  line-height: 35px;
+  border: 1px solid #c5c5c5;
+  border-radius: 5px;
+  text-indent: 2px;
+  padding: 0 2px;
+}
+.share-detail .share-detail-date {
+  height: 40px ;
+  line-height: 40px;
+  margin: 10px 0 ;
+}
 .share-detail .share-detail-left {
   float: left;
   width: 75%;
@@ -1125,10 +1139,35 @@ p.error {
 .share-detail .share-detail-left .share-detail-left-img {
   margin: 20px;
 }
+.share-detail .share-detail-left .share-detail-left-img p {
+  text-align: center;
+  font-size: 18px;
+  color: red;
+  line-height: 40px;
+}
 .share-detail .share-detail-left .share-detail-left-info {
   width: 60%;
   float: left;
   overflow: hidden;
+}
+.share-detail .share-detail-left .share-detail-left-info h5 {
+  font-size: 18px;
+  height: 40px;
+  line-height: 40px;
+}
+.share-detail .share-detail-left .share-detail-left-info label {
+  height: 30px;
+  line-height: 30px;
+}
+.share-detail .share-detail-left .share-detail-left-info span {
+  color: #666;
+}
+.share-detail .share-detail-left .share-detail-other {
+  color: #666;
+}
+.share-detail .share-detail-left .share-detail-other p {
+  height: 30px;
+  line-height: 30px;
 }
 .share-detail .share-detail-right {
   float: right;

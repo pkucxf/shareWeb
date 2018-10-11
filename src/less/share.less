@@ -617,8 +617,21 @@
 }
 /*订单详情**/
 .share-detail{
-
+    .share-date-style{
+      width: 200px;
+      height: 35px;
+      line-height: 35px;
+      border: 1px solid #c5c5c5;
+      border-radius: 5px;
+      text-indent: 2px;
+      padding: 0 2px;
+    }
   overflow: hidden;
+  .share-detail-date{
+    height:40px ;
+    line-height: 40px;
+    margin: 10px 0 ;
+  }
   .share-detail-left{
     .fl;
     width:75%;
@@ -626,11 +639,37 @@
     height: 300px;
     .share-detail-left-img{
       margin: 20px;
+      p{
+        text-align: center;
+        font-size: 18px;
+        color: red;
+        line-height: 40px;
+      }
     }
     .share-detail-left-info{
       width: 60%;
       .fl;
       overflow: hidden;
+      h5{
+        font-size:18px;
+        height: 40px;
+        line-height: 40px;
+      }
+      label{
+        height: 30px;
+        line-height: 30px;
+      }
+      span{
+        color: #666;
+      }
+    }
+
+    .share-detail-other{
+      color: #666;
+      p{
+        height: 30px;
+        line-height: 30px;
+      }
     }
   }
   .share-detail-right{

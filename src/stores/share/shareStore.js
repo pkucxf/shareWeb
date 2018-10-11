@@ -237,12 +237,12 @@ export default class  adminManageStore{
 
 
     //获取自驾租车车辆列表
-    @action getCarInfo (param,callback){
+    @action getCarInfo (param,id,callback){
         this.globalStore.hideAlert();
         let that = this ;
         $.ajax({
             type: "GET",
-            url: Config.share.getCarInfo + "?carId="+ param,
+            url: Config.share.getCarInfo + "?carId="+ param + "&id=" + id,
             dataType: "json",
             contentType: "application/json",
             success: data => {
@@ -250,13 +250,6 @@ export default class  adminManageStore{
                     if(typeof callback == "function"){
                         callback(data.data)
                     }
-                    let result = data.data ;
-                    result.map((m)=>{
-                        m.gmtCreate  = Utils.formatDate(m.gmtCreate)
-                        m.gmtModified  = Utils.formatDate(m.gmtModified)
-                    })
-
-                    this.ListMaterial = Object.assign([],data.data)
                 } else {
                     that.globalStore.showError(data.error ? data.error : "查询失败")
                 }
@@ -281,13 +274,6 @@ export default class  adminManageStore{
                     if(typeof callback == "function"){
                         callback(data.data)
                     }
-                    let result = data.data ;
-                    result.map((m)=>{
-                        m.gmtCreate  = Utils.formatDate(m.gmtCreate)
-                        m.gmtModified  = Utils.formatDate(m.gmtModified)
-                    })
-
-                    this.ListMaterial = Object.assign([],data.data)
                 } else {
                     that.globalStore.showError(data.error ? data.error : "查询失败")
                 }
