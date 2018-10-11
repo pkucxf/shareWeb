@@ -567,6 +567,9 @@ p.error {
   -o-transform: rotate(360deg) scale(1.2);
   -moz-transform: rotate(360deg) scale(1.2);
 }
+.orange {
+  color: #E65901 ;
+}
 .top {
   height: 50px;
   width: 100%;
@@ -1133,8 +1136,22 @@ p.error {
 .share-detail .share-detail-left {
   float: left;
   width: 75%;
+}
+.share-detail .share-detail-left .share-detail-order {
+  width: 100%;
+  overflow: hidden;
   border: 1px solid #c5c5c5;
-  height: 300px;
+  padding: 13px;
+}
+.share-detail .share-detail-left .share-detail-tip {
+  width: 100%;
+  overflow: hidden;
+  line-height: 25px;
+  padding: 10px 13px;
+  color: #EB5A01;
+  background: #FFFCD2;
+  border: 1px solid #c5c5c5;
+  margin-top: 20px;
 }
 .share-detail .share-detail-left .share-detail-left-img {
   margin: 20px;
@@ -1173,7 +1190,33 @@ p.error {
   float: right;
   width: 24%;
   border: 1px solid #c5c5c5;
-  height: 300px;
+}
+.share-detail .share-detail-right h2 {
+  height: 43px;
+  border-bottom: 1px solid #ccc;
+  color: #E65901;
+  background: #EFEFEF;
+  line-height: 42px;
+  font-size: 16px;
+  font-weight: bolder;
+  text-indent: 1em;
+}
+.share-detail .share-detail-right .share-detail-base {
+  border-bottom: 1px dashed #ccc;
+  height: 45px;
+  line-height: 25px;
+  padding: 10px 13px;
+}
+.share-detail .share-detail-right .share-detail-total {
+  height: 60px;
+  line-height: 40px;
+  text-align: right;
+  padding-right: 20px;
+  font-size: 20px;
+}
+.share-detail .share-detail-right .share-detail-button {
+  width: 100%;
+  height: 40px;
 }
 /**接送服务**/
 .share-relay {
