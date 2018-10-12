@@ -12,7 +12,8 @@ var Config = {
         getStore:serverUrl + 'store/getStoreList',
         getDrivingList:serverUrl +'driving/getList',
         getCarInfo:serverUrl +'driving/getCarInfo',
-        getStoreInfo:serverUrl +'driving/getStoreInfo'
+        getStoreInfo:serverUrl +'driving/getStoreInfo',
+        saveOrder:serverUrl + 'order/addOrder',
     },
     shareAdmin:{
         getUserInfo:serverUrl +'admin/getUserInfo',

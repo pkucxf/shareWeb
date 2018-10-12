@@ -92,7 +92,25 @@ export default class OrderDetail extends React.Component {
 
     handleSubmit = () =>{
         let startDate = this.state.startDateFormat , endDate = this.state.endDateFormat ;
-        console.log(startDate)
+        let carInfo = this.state.carInfo, storeInfo  = this.state.storeInfo ;
+        let carDay = this.state.carDay ;
+        if(carDay == 0){
+            globalStore.showTipsModal("请选择您的租赁日期","small")
+            return ;
+        }
+        let param  = {
+            carId:carInfo.id,
+            userId:'281629',
+            storeId:storeInfo.storeId,
+            startTime:startDate,
+            endTime:endDate,
+            orderMoney:this.state.orderTotal,
+            orderTime:new Date().getTime(),
+            day:this.state.carDay
+        }
+        store.saveOrder(param,()=>{
+
+        })
     }
 
     render(){
