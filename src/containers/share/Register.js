@@ -7,13 +7,22 @@ import {Button,Modal} from 'react-bootstrap';
 import Top from '../../components/share/Top';
 import ShareStore  from '../../stores/share/shareStore';
 const store = new ShareStore();
+import tips  from '../../common/tips';
 
 @observer
 export default class Register extends React.Component {
     constructor(props) {
         super(props);
         this.state ={
-            registerParam:{}
+            registerParam:{
+                password:'',
+                password1:''
+            },
+            tips:{
+                name:"",
+                password:"",
+                phone:"",
+            }
         }
     }
 
@@ -21,17 +30,63 @@ export default class Register extends React.Component {
         globalStore.hideAlert();
 
     }
+
+    //判断用户名是否存在
+    hasUser = () =>{
+        let name = this.state.registerParam ?　this.state.registerParam.name :'';
+        if(name){
+            store.hasName( name ,(data)=>{
+                let tip ="";
+                if(data == -1 )
+                    tip = tips.user.name1
+                this.setState({
+                    tips:{
+                        name:tip
+                    }
+
+                })
+            })
+        }
+    }
     setInput = (type , e )=>{
         let registerParam= this.state.registerParam;
         registerParam[type] = $(e.currentTarget).val();
         this.setState({
             registerParam:registerParam
         })
-        //TODO  密码校验
+    }
 
+    validate = () =>{
+        let password= this.state.registerParam.password , password1 = this.state.registerParam.password1
+        let tip = "";
+        if(password != password1){
+            tip= tips.user.password1;
+        }
+        this.setState({
+            tips:{
+                password:tip
+            }
+        })
+    }
+
+    validatePhone = ()=>{
+        let phone= this.state.registerParam.phone ;
+        let pattern =/^1(3|4|5|7|8)\d{9}$/;
+        let tip="";
+        if(!pattern.test(phone)){
+            tip = tips.user.phone
+        }
+        this.setState({
+            tips:{
+                phone:tip
+            }
+        })
     }
     handleRegister =()=>{
         let registerParam = this.state.registerParam;
+        if(this.validateAll()){
+            return;
+        }
         let param ={
             name:registerParam.name ||'',
             password:registerParam.password||'',
@@ -43,7 +98,18 @@ export default class Register extends React.Component {
         store.userReg(param,(res)=>{
             res
         })
+    }
 
+    validateAll = () =>{
+        let registerParam = this.state.registerParam , tip = this.state.tips ;
+        let  bool = true  ;
+        if(registerParam.name == '' || registerParam.password == "" || registerParam.password1 =="" || registerParam.phone=="" ){
+           globalStore.showTipsModal("请填写注册信息！","small");
+           bool = false ;
+        }
+        return bool;
+
+        
     }
 
     render(){
@@ -53,33 +119,36 @@ export default class Register extends React.Component {
                 <div className="row share-register w1180">
                     <div className="share-register-left form-horizontal col-md-8 mt50">
                         <div className="form-group">
-                            <label className="col-sm-2 control-label">用户名：</label>
+                            <label className="col-sm-2 control-label"><span className="red">*</span>用户名：</label>
                             <div className="col-sm-6">
-                                <input type="text" onKeyUp={this.setInput.bind(this,"name")} className="form-control" placeholder="请输入用户名"/>
+                                <input type="text" onChange={this.setInput.bind(this,"name")} onBlur={this.hasUser} className="form-control" placeholder="请输入用户名"/>
+                            </div>
+                            <div className="col-sm-2"> <span className="fl red">{this.state.tips.name}</span></div>
+                        </div>
+                        <div className="form-group">
+                            <label className="col-sm-2 control-label"><span className="red">*</span>密码：</label>
+                            <div className="col-sm-6">
+                                <input type="password" onChange={this.setInput.bind(this,"password")} className="form-control" placeholder="请输入密码"/>
                             </div>
                         </div>
                         <div className="form-group">
-                            <label className="col-sm-2 control-label">密码：</label>
+                            <label className="col-sm-2 control-label"><span className="red">*</span>确认密码：</label>
                             <div className="col-sm-6">
-                                <input type="password" onKeyUp={this.setInput.bind(this,"password")} className="form-control" placeholder="请输入密码"/>
+                                 <input type="password" onChange={this.setInput.bind(this,"password1")} className="form-control" onBlur={this.validate} placeholder="请再次输入密码"/>
                             </div>
+                            <div className="col-sm-2"> <span className="fl red">{this.state.tips.password}</span></div>
                         </div>
                         <div className="form-group">
-                            <label className="col-sm-2 control-label">确认密码：</label>
+                            <label className="col-sm-2 control-label"><span className="red">*</span>手机号：</label>
                             <div className="col-sm-6">
-                                 <input type="password" onKeyUp={this.setInput.bind(this,"password1")} className="form-control" placeholder="请再次输入密码"/>
+                                <input type="text" className="form-control" onChange={this.setInput.bind(this,"phone")} onBlur={this.validatePhone} placeholder="请输入手机号"/>
                             </div>
-                        </div>
-                        <div className="form-group">
-                            <label className="col-sm-2 control-label">手机号：</label>
-                            <div className="col-sm-6">
-                                <input type="text" className="form-control" onKeyUp={this.setInput.bind(this,"phone")} placeholder="请输入7-12位验证码"/>
-                            </div>
+                            <div className="col-sm-2"> <span className="fl red">{this.state.tips.phone}</span></div>
                         </div>
                         <div className="form-group">
                             <label className="col-sm-2 control-label">联系地址：</label>
                             <div className="col-sm-6">
-                                <input type="text" className="form-control" onKeyUp={this.setInput.bind(this,"address")} placeholder="请输入用户名"/>
+                                <input type="text" className="form-control" onChange={this.setInput.bind(this,"address")} placeholder="请输入联系地址"/>
                             </div>
                         </div>
                         <div className="share-register-button">

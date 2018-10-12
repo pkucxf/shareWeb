@@ -6,6 +6,7 @@ import {Button} from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import DrivingList from "@/components/share/DrivingList";
 import moment from 'moment';
+import {hashHistory} from 'react-router';
 import 'react-datepicker/dist/react-datepicker.css';
 const  store = new ShareStore();
 @observer
@@ -109,6 +110,10 @@ export default class OrderDetail extends React.Component {
             day:this.state.carDay
         }
         store.saveOrder(param,()=>{
+            globalStore.showTipsModal("恭喜您，预约成功!","small",()=>{},()=>{
+               //  hashHistory.push =  "#/home" ;
+                window.location.href = '#/home'
+            })
 
         })
     }

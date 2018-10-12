@@ -6,8 +6,9 @@ if(window.SERVICESURL!=''){
 }
 var Config = {
     share:{
-        register:serverUrl + 'web/register',
-        login:serverUrl + 'web/login',
+        register:serverUrl + 'user/register',
+        login:serverUrl + 'user/login',
+        hasUser:serverUrl + 'user/hasUser',
         getCar:serverUrl+'car/getCarList',
         getStore:serverUrl + 'store/getStoreList',
         getDrivingList:serverUrl +'driving/getList',
