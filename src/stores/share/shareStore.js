@@ -46,10 +46,10 @@ export default class  adminManageStore{
             success: data => {
                 if (data.code == 0 ) {
                     if(typeof callback == "function"){
-                        callback(data)
+                        callback(data.data)
                     }
                 } else {
-                    that.globalStore.showError(data.msg ? data.msg : "登陆失败，账户或密码错误")
+                    that.globalStore.showError("登陆失败，账户或密码错误")
                 }
             },
             error: (xhr, status, err) => {

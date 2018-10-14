@@ -4,6 +4,7 @@ import globalStore from '../../stores/GlobalStore';
 import _ from  'lodash';
 import Util from '../../common/utils';
 import {Button,Modal} from 'react-bootstrap';
+import localforage from 'localforage';
 
 import ShareStore  from '../../stores/share/shareStore';
 const store = new ShareStore();
@@ -42,8 +43,14 @@ export default class Login extends React.Component {
             password:loginParam.password||''
         }
 
-        store.userLogin(param,(res)=>{
-            res
+        store.userLogin(param,(data)=>{
+            let user  = {
+                name:loginParam.name ,
+                userId:data
+            }
+            localforage.setItem("u",JSON.stringify(user),()=>{
+                this.handleClose();
+            })
         })
 
     }

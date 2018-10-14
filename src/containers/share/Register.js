@@ -4,6 +4,7 @@ import globalStore from '../../stores/GlobalStore';
 import _ from  'lodash';
 import Util from '../../common/utils';
 import {Button,Modal} from 'react-bootstrap';
+import localforage from 'localforage';
 import Top from '../../components/share/Top';
 import ShareStore  from '../../stores/share/shareStore';
 const store = new ShareStore();
@@ -84,7 +85,7 @@ export default class Register extends React.Component {
     }
     handleRegister =()=>{
         let registerParam = this.state.registerParam;
-        if(this.validateAll()){
+        if(!this.validateAll()){
             return;
         }
         let param ={
@@ -95,8 +96,17 @@ export default class Register extends React.Component {
             sendAddress0:registerParam.address||''
         }
 
-        store.userReg(param,(res)=>{
-            res
+        store.userReg(param,(data)=>{
+            globalStore.showTipsModal("注册成功！","small",()=>{},()=>{
+                let info = {
+                    userId:data ,
+                    name:registerParam.name
+                }
+                localforage.setItem("u",info,()=>{
+                    window.location.href ="#/home";
+                })
+
+            })
         })
     }
 
