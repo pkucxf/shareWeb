@@ -34,6 +34,34 @@ export default class  adminManageStore{
         })
     }
 
+    //修改密码
+    @action updatePassword (param , callback ){
+        this.globalStore.hideAlert();
+        let that = this ;
+        $.ajax({
+            type: "POST",
+            url: Config.share.updateUser,
+            data: JSON.stringify(param),
+            contentType: "application/json",
+            success: data => {
+                if (data.code == 0 ) {
+                    this.userRegResult = Object.assign({},data)
+                    if (typeof callback == "function") {
+                        callback(data.data);
+                    }
+                } else {
+                    that.globalStore.showError("修改失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
+
+
+
+
     //用户登录
     @action userLogin(param,callback){
         this.globalStore.hideAlert();
@@ -162,71 +190,7 @@ export default class  adminManageStore{
 
     }
 
-    //获取素材
-    @observable ListMaterial = [];
-    @action getListMaterial(param,callback){
-        this.globalStore.hideAlert();
-        let that = this ;
-        $.ajax({
-            type: "GET",
-            url: Config.adminManage.material.listMaterial+'?type='+param,
-            dataType: "json",
-            contentType: "application/x-www-form-urlencoded",
-            success: data => {
-                if (data.code == 0 ) {
-                    if(typeof callback == "function"){
-                        callback(data.data)
-                    }
-                    let result = data.data ;
-                    result.map((m)=>{
-                        m.gmtCreate  = Utils.formatDate(m.gmtCreate)
-                        m.gmtModified  = Utils.formatDate(m.gmtModified)
-                    })
 
-                    this.ListMaterial = Object.assign([],data.data)
-                } else {
-                    that.globalStore.showError(data.error ? data.error : "查询失败")
-                }
-            },
-            error: (xhr, status, err) => {
-                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
-            }
-        })
-
-    }
-
-    //保存素材
-    @action saveMaterial(param,callback){
-        this.globalStore.hideAlert();
-        let params = {
-            img:param.img ,
-            type:param.type ,
-            remarks:param.remarks,
-            sortNo:param.sortNo
-        };
-        let that = this ;
-        $.ajax({
-            type: "POST",
-            url: Config.adminManage.material.insertMaterial,
-            dataType: "json",
-            data:params,
-            contentType: "application/x-www-form-urlencoded",
-            success: data => {
-                if (data.code == 0 ) {
-                    if(typeof callback == "function"){
-                        callback(data.data)
-                    }
-                    that.globalStore.showInfo("保存成功！")
-                } else {
-                    that.globalStore.showError(data.error ? data.error : "查询失败")
-                }
-            },
-            error: (xhr, status, err) => {
-                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
-            }
-        })
-
-    }
 
 
     //获取自驾租车车辆列表

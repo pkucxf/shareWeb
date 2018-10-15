@@ -25,6 +25,7 @@ import StoreContainer from 'bundle-loader?lazy&name=app-[name]!./containers/shar
 import ActiveContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/Active';
 import RelayContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/Relay';
 import DrivingContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/Driving';
+import MyContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share/My';
 
 
 const Login  = (props) => (<Bundle load={LoginContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
@@ -37,6 +38,7 @@ const Store  = (props) => (<Bundle load={StoreContainer} {...props}>{ (Page) => 
 const Active  = (props) => (<Bundle load={ActiveContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const Relay  = (props) => (<Bundle load={RelayContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const Driving  = (props) => (<Bundle load={DrivingContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
+const My  = (props) => (<Bundle load={MyContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 
 
 /*admin*/
@@ -87,6 +89,7 @@ ReactDom.render(
         <Route path='/relay' component={Relay}/>
         <Route path='/active' component={Active}/>
         <Route path='/driving' component={Driving}/>
+        <Route path='/my' component={My}/>
 
         <Route path='/a/' >
             <Route path ='home' component={aHome} />

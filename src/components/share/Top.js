@@ -3,6 +3,7 @@ import {observer} from 'mobx-react';
 import globalStore from '../../stores/GlobalStore';
 import Login from '../../components/share/Login';
 import localforage from 'localforage';
+import {Link,hashHistory} from 'react-router';
 @observer
 export default class Top extends React.Component {
     constructor(props) {
@@ -38,7 +39,6 @@ export default class Top extends React.Component {
     }
 
     logout = () =>{
-
         localforage.setItem("u","",()=>{
             this.hasLogin();
             globalStore.showTipsModal("您已退出本系统","small");
@@ -70,7 +70,7 @@ export default class Top extends React.Component {
 
                         <div className="share-top-right fr">
                             {JSON.stringify(user)!="{}" ? (
-                                <a href="javascript:;">个人中心</a>
+                                <Link to="/my">个人中心</Link>
                             ):""}
                             <a href="javascript:;">帮助中心</a>
                             <a href="javascript:;">400-0000-8888</a>

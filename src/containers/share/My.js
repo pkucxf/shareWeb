@@ -1,0 +1,52 @@
+import React from 'react';
+import {observer} from 'mobx-react';
+import globalStore from '../../stores/GlobalStore';
+import Foot from '../../components/share/Foot';
+import Nav from '../../components/share/Nav';
+import UpdateUser from '../../components/share/UpdateUser'
+import OrderList from '../../components/share/OrderList'
+
+@observer
+export default class My extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state ={
+            current:0,
+            menu:[{id:0,name:'修改密码'},{id:'1',name:'我的订单'}]
+        }
+    }
+
+    componentWillMount =()=>{
+        globalStore.hideAlert();
+
+    }
+
+    render(){
+        let current = this.state.current;
+        return(
+            <div className="share-box">
+                <Nav/>
+                <div className="share-my share-car">
+                    <div className="share-my-left">
+                        <ul>
+                            {this.state.menu.map((m,n)=>{
+                                return (
+                                    <li key={n} className={current==n ? "active":""}>{m.name}</li>
+                                )
+                            })}
+                        </ul>
+                    </div>
+                    <div className="share-my-right">
+                        <UpdateUser show={current==0 ? true : false }/>
+                        <OrderList show={current==1 ? true : false }/>
+                    </div>
+                </div>
+
+                <Foot/>
+
+            </div>
+        )
+
+    }
+
+}
