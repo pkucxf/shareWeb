@@ -21,6 +21,10 @@ export default class My extends React.Component {
 
     }
 
+    setTab = (current ) =>{
+        this.setState({current})
+    }
+
     render(){
         let current = this.state.current;
         return(
@@ -31,7 +35,7 @@ export default class My extends React.Component {
                         <ul>
                             {this.state.menu.map((m,n)=>{
                                 return (
-                                    <li key={n} className={current==n ? "active":""}>{m.name}</li>
+                                    <li key={n} className={current==n ? "active":""} onClick={this.setTab.bind(this,m.id)}>{m.name}</li>
                                 )
                             })}
                         </ul>

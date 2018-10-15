@@ -104,7 +104,6 @@ export default class UpdateUser extends React.Component {
                     if(data == 0){
                         globalStore.showTipsModal("密码修改成功，请重新登录",'small',"",()=>{
                             this.logout();
-
                         });
                     }
                 })
