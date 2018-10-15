@@ -48,7 +48,8 @@ export default class Login extends React.Component {
                 name:loginParam.name ,
                 userId:data
             }
-            localforage.setItem("u",JSON.stringify(user),()=>{
+            localforage.setItem("u",user,()=>{
+                this.props.loginFn();
                 this.handleClose();
             })
         })

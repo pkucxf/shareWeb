@@ -6,14 +6,15 @@ import {Button} from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import DrivingList from "@/components/share/DrivingList";
 import moment from 'moment';
-import {hashHistory} from 'react-router';
 import 'react-datepicker/dist/react-datepicker.css';
+import localforage from 'localforage';
 const  store = new ShareStore();
 @observer
 export default class OrderDetail extends React.Component {
     constructor(props) {
         super(props);
         this.state ={
+            user:{},
             carInfo:{},
             storeInfo:{},
             startDate:"",
@@ -28,7 +29,6 @@ export default class OrderDetail extends React.Component {
 
     componentWillMount =()=>{
         globalStore.hideAlert();
-
         this.getCarInfo();
         this.getStoreInfo();
     }
@@ -38,7 +38,19 @@ export default class OrderDetail extends React.Component {
     }
 
     componentWillReceiveProps=(props)=>{
-        props
+    }
+
+    handleLogin = (callback) =>{
+        localforage.getItem("u").then((user)=>{
+            if(user){
+                this.setState({user},()=>{
+                    if(typeof callback == "function")
+                        callback();
+                })
+            }else{
+                this.setState({user:{}})
+            }
+        });
     }
 
     getCarInfo = () =>{
@@ -95,27 +107,43 @@ export default class OrderDetail extends React.Component {
         let startDate = this.state.startDateFormat , endDate = this.state.endDateFormat ;
         let carInfo = this.state.carInfo, storeInfo  = this.state.storeInfo ;
         let carDay = this.state.carDay ;
-        if(carDay == 0){
+
+        if(carDay == 0 || this.state.orderTotal == 0){
             globalStore.showTipsModal("请选择您的租赁日期","small")
             return ;
         }
-        let param  = {
-            carId:carInfo.id,
-            userId:'281629',
-            storeId:storeInfo.storeId,
-            startTime:startDate,
-            endTime:endDate,
-            orderMoney:this.state.orderTotal,
-            orderTime:new Date().getTime(),
-            day:this.state.carDay
-        }
-        store.saveOrder(param,()=>{
-            globalStore.showTipsModal("恭喜您，预约成功!","small",()=>{},()=>{
-               //  hashHistory.push =  "#/home" ;
-                window.location.href = '#/home'
-            })
+        let user = {}
+        this.handleLogin(()=>{
+            user = this.state.user ;
+            if(JSON.stringify(user) === '{}'){
+                globalStore.showTipsModal("请您先登录","small")
+                return ;
+            }
+            if(user.id ==""){
+                globalStore.showTipsModal("请您先登录","small")
+                return ;
+            }
 
-        })
+            let param  = {
+                carId:carInfo.id,
+                userId:user ? user.userId:'',
+                storeId:storeInfo.storeId,
+                startTime:startDate,
+                endTime:endDate,
+                orderMoney:this.state.orderTotal,
+                orderTime:new Date().getTime(),
+                day:this.state.carDay
+            }
+            store.saveOrder(param,()=>{
+                globalStore.showTipsModal("恭喜您，预约成功!","small","",()=>{
+                    //  hashHistory.push =  "#/home" ;
+                    window.location.href = '#/home'
+                })
+
+            })
+        });
+
+
     }
 
     render(){

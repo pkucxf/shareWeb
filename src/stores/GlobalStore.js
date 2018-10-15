@@ -195,27 +195,6 @@ class GlobalStore {
         this.showWaiting = Object.assign(this.showWaiting, {show: false});
     }
 
-
-    trainEditData = [];
-
-    get getTrainEditData() {
-        return this.trainEditData;
-    }
-
-    /** webreimburse 参数说明
-     *  travel 交通  ， hotel 住宿  ，other 其他 ， eating 餐饮   communicate 通讯
-     *  数据格式：eg:
-     *   [{data:{...返回的数据} }]
-     *   取值方式  let result =  globalStore.getWebReimburse ;
-     */
-
-    webreimburse = [];
-
-    get getWebReimburse() {
-        return this.webreimburse
-    }
-
-
     constructor() {
 
         // console.log(this.getDefaultAcc);

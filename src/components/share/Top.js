@@ -4,7 +4,7 @@ import globalStore from '../../stores/GlobalStore';
 import Login from '../../components/share/Login';
 import localforage from 'localforage';
 @observer
-    export default class Top extends React.Component {
+export default class Top extends React.Component {
     constructor(props) {
         super(props);
         this.state ={
@@ -29,21 +29,26 @@ import localforage from 'localforage';
     }
     hasLogin = () =>{
         localforage.getItem("u").then((user)=>{
-            // let user = JSON.parse(users);
             if(user){
-                this.setState({user})
-
+                this.setState({user,show:false})
+            }else{
+                this.setState({user:{}})
             }
         });
-
     }
 
     logout = () =>{
+
         localforage.setItem("u","",()=>{
+            this.hasLogin();
+            globalStore.showTipsModal("您已退出本系统","small");
             window.location.href ="#/home";
         })
     }
 
+    loginFn = () =>{
+        this.hasLogin();
+    }
 
     render(){
         let user = this.state.user ;
@@ -78,7 +83,7 @@ import localforage from 'localforage';
                 <div className="w1180 h50">
                     <a href="javascript:;" className="logo"></a>
                 </div>
-                <Login show={this.state.show}/>
+                <Login show={this.state.show} loginFn = {this.loginFn}/>
             </div>
 
         )
