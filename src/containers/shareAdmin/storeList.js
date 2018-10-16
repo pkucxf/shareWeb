@@ -18,7 +18,7 @@ export default class storeList extends React.Component {
         this.state ={
             rowsName: [
                 {code:'storeId',name:'storeId',hidden:true},{code:'storeName',name:'店铺名',add:true },{code:'storeStar',name:'店铺星级',add:true },
-                {code:'storePhone',name:'联系方式',add:true }, {code:'storeAddressProvince',name:'所在省',add:true },
+                {code:'storePhone',name:'联系方式',add:true },{code:'storePhone',name:'登录用户名' },  {code:'storeAddressProvince',name:'所在省',add:true },
                 {code:'storeAddressCity',name:'所在市',add:true },{code:'storeAddressArea',name:'所在区',add:true },{code:'storeAddress',name:'详细地址' ,add:true },
             ],
             tableData:[]
@@ -93,6 +93,7 @@ export default class storeList extends React.Component {
             data.storePhone = parseInt( data.storePhone);
             data.storeId = new Date().getTime();
             adminStore.saveStore(data,()=>{
+                this.initTable();
                 this.closeModal();
             })
 
