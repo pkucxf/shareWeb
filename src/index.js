@@ -42,12 +42,14 @@ const My  = (props) => (<Bundle load={MyContainer} {...props}>{ (Page) => <Page 
 
 
 /*admin*/
+import adminLogin from 'bundle-loader?lazy&name=app-[name]!./containers/shareAdmin/adminLogin';
 import aHomeContainer from 'bundle-loader?lazy&name=app-[name]!./containers/shareAdmin/adminHome';
 import aCarContainer from 'bundle-loader?lazy&name=app-[name]!./containers/shareAdmin/carType';
 import aStoreListContainer from 'bundle-loader?lazy&name=app-[name]!./containers/shareAdmin/storeList';
 import aUserListContainer from 'bundle-loader?lazy&name=app-[name]!./containers/shareAdmin/userList';
 import aStoreAndCarContainer from 'bundle-loader?lazy&name=app-[name]!./containers/shareAdmin/storeAndCar';
 
+const aLogin =  (props) => (<Bundle load={adminLogin} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const aHome =  (props) => (<Bundle load={aHomeContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const aCar =  (props) => (<Bundle load={aCarContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const aStoreList =  (props) => (<Bundle load={aStoreListContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
@@ -92,6 +94,7 @@ ReactDom.render(
         <Route path='/my' component={My}/>
 
         <Route path='/a/' >
+            <Route path='login' component={aLogin}/>
             <Route path ='home' component={aHome} />
             <Route path ='carType' component={aCar} />
             <Route path ='userList' component={aUserList} />

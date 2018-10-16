@@ -59,12 +59,23 @@ export default class OrderList extends React.Component {
                                 <img src={m.carTypes[0].img}/>
                             </div>
                             <div className="share-order-list-right fr">
-                                <div className="row">
-                                    <div className="col-md-2">车型：</div>
+                                <div className="row mt10 mb10">
+                                    <div className="col-md-2"><label>车型：</label></div>
                                     <div className="col-md-4">{m.carTypes[0].carName}</div>
-                                    <div className="col-md-2">总价：</div>
+                                    <div className="col-md-2"><label>总价：</label></div>
                                     <div className="col-md-4">{m.orderMoney}元   </div>
-
+                                </div>
+                                <div className="row mb10">
+                                    <div className="col-md-2"><label>起止日期：</label></div>
+                                    <div className="col-md-4">{m.startTime}</div>
+                                    <div className="col-md-2"><label>结束日期：</label></div>
+                                    <div className="col-md-4">{m.endTime}</div>
+                                </div>
+                                <div className="row mb10">
+                                    <div className="col-md-2"><label>店铺地址：</label></div>
+                                    <div className="col-md-4">{m.storeInfos[0].storeAddressProvince}{m.storeInfos[0].storeAddressArea}{m.storeInfos[0].storeAddress}</div>
+                                    <div className="col-md-2"><label>联系电话：</label></div>
+                                    <div className="col-md-4">{m.storeInfos[0].phone}</div>
                                 </div>
                             </div>
                         </div>

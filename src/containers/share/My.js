@@ -12,7 +12,7 @@ export default class My extends React.Component {
         super(props);
         this.state ={
             current:0,
-            menu:[{id:0,name:'修改密码'},{id:'1',name:'我的订单'}]
+            menu:[{id:0,name:'我的订单'},{id:1,name:'修改密码'}]
         }
     }
 
@@ -41,8 +41,8 @@ export default class My extends React.Component {
                         </ul>
                     </div>
                     <div className="share-my-right">
-                        <UpdateUser show={current==0 ? true : false }/>
-                        <OrderList show={current==1 ? true : false }/>
+                        <OrderList show={current==0 ? true : false }/>
+                        <UpdateUser show={current==1 ? true : false }/>
                     </div>
                 </div>
 

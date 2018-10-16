@@ -4,9 +4,9 @@ import globalStore from '../../stores/GlobalStore';
 import _ from  'lodash';
 import Util from '../../common/utils';
 import {Button,Modal} from 'react-bootstrap';
-import adminManageStore from '../../stores/adminManage/adminManageStore';
+import shareAdminStore from '../../stores/share/shareAdminStore';
 import localforage from 'localforage';
-const store = new adminManageStore();
+const store = new shareAdminStore();
 @observer
 export default class Login extends React.Component {
     constructor(props) {
@@ -22,7 +22,6 @@ export default class Login extends React.Component {
 
     componentWillMount =()=>{
         globalStore.hideAlert();
-        // $("#root").addClass("b-login")
         let that = this;
         document.onkeydown=function(event){
             var e = event || window.event ;
@@ -51,7 +50,6 @@ export default class Login extends React.Component {
                             <Button onClick={this.loginSys}>登陆</Button>
                         </div>
                         {this.state.loginError == true ? (<p className="mt10 mb30 error text-center">用户名或密码错误</p>):""}
-                        <p className="text-center">没有账号? <a href="#/register" style={{"color":"red"}}>立即注册</a></p>
                     </div>
 
                 </div>
@@ -96,9 +94,14 @@ export default class Login extends React.Component {
             "password":password
         }
         store.userLogin(param,(data)=>{
-            localforage.setItem("userName",this.state.userName )
+            let user = {
+                "name":userName,
+                'id':data.data.id,
+                'type':data.data.type
+            }
+            localforage.setItem("ua",user);
             $("#root").removeClass("b-login");
-            window.location.hash='#/coinPrice/'
+            window.location.hash='#/a/userList'
         });
 
     }

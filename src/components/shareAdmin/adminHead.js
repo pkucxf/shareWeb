@@ -3,13 +3,7 @@ import {observer} from 'mobx-react';
 import globalStore from '../../stores/GlobalStore';
 import _ from  'lodash';
 import Util from '../../common/utils';
-import {Button,Modal} from 'react-bootstrap';
 import localforage from 'localforage';
-import Menu from '../../components/shareAdmin/adminMenu';
-import CarType from '../../containers/shareAdmin/carType';
-import UserList from '../../containers/shareAdmin/userList';
-import StoreList from '../../containers/shareAdmin/storeList';
-import StoreAndCar from '../../containers/shareAdmin/storeAndCar';
 
 @observer
 export default class adminHead extends React.Component {
@@ -17,12 +11,14 @@ export default class adminHead extends React.Component {
         super(props);
         this.state ={
             menu:0,
-            name:'用户管理'
+            name:'用户管理',
+            user:{}
         }
     }
 
     componentWillMount =()=>{
         globalStore.hideAlert();
+        this.hasLogin();
     }
     componentDidMount = () =>{
         window.onresize = function(){
@@ -31,17 +27,32 @@ export default class adminHead extends React.Component {
         $(".share-admin-menu").css("height",$(window).height()-50+"px")
     }
 
-    changeMenu = (menu,name) =>{
-        this.setState({
-           // menu,name
+    hasLogin = () =>{
+        localforage.getItem("ua").then((data)=>{
+            if(!data || JSON.stringify(data) === "{}"){
+                globalStore.showTipsModal("请先登录系统","small","",()=>{
+                    window.location.href = "#/a/login";
+                })
+                return ;
+            }
+            this.setState({user:data})
         })
+    }
+    logOut =()=>{
+        localforage.setItem("ua",{},()=>{
+            window.location.href = "#/a/login";
+        });
     }
 
     render(){
         return(
             <div className="share-admin-box">
                 <div className="share-admin-head">
-                    后台管理系统
+                    <div className="fl">后台管理系统</div>
+                    <div className="share-admin-head-right fr">
+                        <span className="mr20">欢迎您 {","+this.state.user.name}</span>
+                        <span className="fr" title="退出" onClick={this.logOut}>退出</span>
+                    </div>
                 </div>
 
             </div>

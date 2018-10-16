@@ -19,6 +19,7 @@ var Config = {
         getOrderList:serverUrl + 'order/queryOrderByUserId'
     },
     shareAdmin:{
+        login:serverUrl+'admin/userLogin',
         getUserInfo:serverUrl +'admin/getUserInfo',
         delUserInfo:serverUrl +'admin/delUser',
         updateUserInfo:serverUrl+'admin/updateUser',

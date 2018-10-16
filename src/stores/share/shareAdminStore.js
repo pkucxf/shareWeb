@@ -8,6 +8,33 @@ export default class  shareAdminStore{
 
     globalStore = GlobalStore;
 
+
+    //用户登录
+    @action userLogin(param,callback){
+        this.globalStore.hideAlert();
+        let that = this ;
+        $.ajax({
+            type: "POST",
+            url:Config.shareAdmin.login,
+            data:JSON.stringify(param) ,
+            contentType: "application/json",
+            success: data => {
+                if (data.code == 0 ) {
+                    if(typeof callback == "function"){
+                        callback(data)
+                    }
+                } else {
+                    that.globalStore.showError(data.msg ? data.msg : "登陆失败，账户或密码错误")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
+
+
+
     //获取车辆类型
     @action getUserInfo(param,callback){
         this.globalStore.hideAlert();
@@ -83,29 +110,6 @@ export default class  shareAdminStore{
     }
 
 
-    //用户登录
-    @action userLogin(param,callback){
-        this.globalStore.hideAlert();
-        let that = this ;
-        $.ajax({
-            type: "POST",
-            url: 'http://127.0.0.1:9090/web/login',
-            data:JSON.stringify(param) ,
-            contentType: "application/json",
-            success: data => {
-                if (data.code == 0 ) {
-                    if(typeof callback == "function"){
-                        callback(data)
-                    }
-                } else {
-                    that.globalStore.showError(data.msg ? data.msg : "登陆失败，账户或密码错误")
-                }
-            },
-            error: (xhr, status, err) => {
-                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
-            }
-        })
-    }
 
 
 
