@@ -72,12 +72,12 @@ export default class  adminManageStore{
             data:JSON.stringify(param) ,
             contentType: "application/json",
             success: data => {
-                if (data.code == 0 ) {
+                if (data.code == 0 && data.data != -2 ) {
                     if(typeof callback == "function"){
                         callback(data.data)
                     }
                 } else {
-                    that.globalStore.showError("登陆失败，账户或密码错误")
+                    that.globalStore.showTipsModal("登陆失败，账户或密码错误","small")
                 }
             },
             error: (xhr, status, err) => {

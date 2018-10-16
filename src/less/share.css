@@ -1414,19 +1414,33 @@ p.error {
 .share-my .share-user .share-user-button button {
   width: 100px;
 }
-.share-my .share-order-list {
+.share-order-list {
   width: 100%;
   padding: 5px;
   border-bottom: 1px dashed #c5c5c5;
   height: 130px;
 }
-.share-my .share-order-list .share-order-list-left {
+.share-order-list .share-order-list-left {
   width: 200px;
 }
-.share-my .share-order-list .share-order-list-left img {
+.share-order-list .share-order-list-left img {
   width: 90%;
 }
-.share-my .share-order-list .share-order-list-right {
+.share-order-list .share-order-list-right {
   width: 680px;
+}
+.share-order-ul {
+  width: 100%;
+  height: 50px;
+}
+.share-order-ul ul li {
+  padding: 7px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  float: left;
+}
+.share-order-ul ul li.active {
+  color: #fff;
+  background: #32C2CD;
 }
 /*# sourceMappingURL=share.css.map */

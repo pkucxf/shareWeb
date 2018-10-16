@@ -58,7 +58,7 @@ export default class  shareAdminStore{
         })
     }
 
-    //获取车辆类型
+    //
     @action delUser(param , callback){
         this.globalStore.hideAlert();
         let that = this ;
@@ -432,6 +432,50 @@ export default class  shareAdminStore{
         })
     }
 
+    //获取订单列表
+    @action getOrderList(param,callback){
+        this.globalStore.hideAlert();
+        let that = this ;
+        $.ajax({
+            type: "GET",
+            url:Config.shareAdmin.getOrderList + '?userId='+ param.userId + "&userType="+param.userType,
+            contentType: "application/json",
+            success: data => {
+                if (data.code == 0 ) {
+                    if(typeof callback == "function"){
+                        callback(data.data)
+                    }
+                } else {
+                    that.globalStore.showError(data.error ? data.error : "查询失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
 
+    //商家确认订单
+    @action sureOrder (id,callback){
+        this.globalStore.hideAlert();
+        let that = this ;
+        $.ajax({
+            type: "GET",
+            url:Config.shareAdmin.sureOrder + '?id='+ id,
+            contentType: "application/json",
+            success: data => {
+                if (data.code == 0 ) {
+                    if(typeof callback == "function"){
+                        callback(data.data)
+                    }
+                } else {
+                    that.globalStore.showError(data.error ? data.error : "查询失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
 
 }

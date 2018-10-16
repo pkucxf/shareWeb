@@ -48,6 +48,7 @@ import aCarContainer from 'bundle-loader?lazy&name=app-[name]!./containers/share
 import aStoreListContainer from 'bundle-loader?lazy&name=app-[name]!./containers/shareAdmin/storeList';
 import aUserListContainer from 'bundle-loader?lazy&name=app-[name]!./containers/shareAdmin/userList';
 import aStoreAndCarContainer from 'bundle-loader?lazy&name=app-[name]!./containers/shareAdmin/storeAndCar';
+import aOrderListContainer from 'bundle-loader?lazy&name=app-[name]!./containers/shareAdmin/orderList';
 
 const aLogin =  (props) => (<Bundle load={adminLogin} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const aHome =  (props) => (<Bundle load={aHomeContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
@@ -55,6 +56,7 @@ const aCar =  (props) => (<Bundle load={aCarContainer} {...props}>{ (Page) => <P
 const aStoreList =  (props) => (<Bundle load={aStoreListContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const aUserList =  (props) => (<Bundle load={aUserListContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const aStoreAndCar =  (props) => (<Bundle load={aStoreAndCarContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
+const aOrderList =  (props) => (<Bundle load={aOrderListContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 
 const requireAuth = (nextState, replace, next) => {
   //切换路由时初始化环境
@@ -65,9 +67,9 @@ const requireAuth = (nextState, replace, next) => {
     return;
   }
   //验证权限
-  $.ajax({
+/*  $.ajax({
     type: "GET",
-    url: Config.base.islogin,
+    url: "",
     success: data => {
       if (data.success) {
         next();
@@ -75,7 +77,7 @@ const requireAuth = (nextState, replace, next) => {
         window.location = Config.base.index;
       }
     }
-  });
+  });*/
 }
 // <Route path="/home" component={Home}/>
 ReactDom.render(
@@ -100,6 +102,8 @@ ReactDom.render(
             <Route path ='userList' component={aUserList} />
             <Route path ='storeList' component={aStoreList} />
             <Route path ='storeAndCar' component={aStoreAndCar} />
+            <Route path ='order' component={aOrderList} />
+            <Route />
         </Route>
 
 
