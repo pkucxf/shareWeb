@@ -53,7 +53,8 @@ export default class orderList extends React.Component {
         let user = this.state.user ;
         let param= {
             userId:user.id,
-            userType:user.type
+            userType:user.type,
+            payStatu:this.state.active
         }
         adminStore.getOrderList(param,(res)=>{
             this.setState({
@@ -88,7 +89,8 @@ export default class orderList extends React.Component {
     changeTab = (type) =>{
         this.setState({
             active:type
-        })
+        },()=>{ this.initTable()})
+
     }
 
     render(){

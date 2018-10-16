@@ -36,7 +36,8 @@ var Config = {
         getStoreList:serverUrl + 'admin/getStoreList',
         delCarAndStore:serverUrl + 'admin/delCarAndStore',
         getOrderList:serverUrl+'admin/getOrderList',
-        sureOrder:serverUrl + 'admin/sureOrder'
+        sureOrder:serverUrl + 'admin/sureOrder',
+        queryAllOrderByPaystatu:serverUrl + 'admin/queryAllOrderByPaystatu'
 
     },
     common:{

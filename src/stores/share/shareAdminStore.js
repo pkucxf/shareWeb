@@ -438,7 +438,7 @@ export default class  shareAdminStore{
         let that = this ;
         $.ajax({
             type: "GET",
-            url:Config.shareAdmin.getOrderList + '?userId='+ param.userId + "&userType="+param.userType,
+            url:Config.shareAdmin.getOrderList + '?userId='+ param.userId + "&userType="+param.userType + "&payStatu=" +param.payStatu,
             contentType: "application/json",
             success: data => {
                 if (data.code == 0 ) {
@@ -477,5 +477,29 @@ export default class  shareAdminStore{
             }
         })
     }
+
+    //    订单按状态分类
+    @action queryAllOrderByPaystatu (id,callback){
+        this.globalStore.hideAlert();
+        let that = this ;
+        $.ajax({
+            type: "GET",
+            url:Config.shareAdmin.queryAllOrderByPaystatu + '?payStatu='+ id,
+            contentType: "application/json",
+            success: data => {
+                if (data.code == 0 ) {
+                    if(typeof callback == "function"){
+                        callback(data.data)
+                    }
+                } else {
+                    that.globalStore.showError(data.error ? data.error : "查询失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
+
 
 }

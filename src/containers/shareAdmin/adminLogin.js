@@ -94,12 +94,8 @@ export default class Login extends React.Component {
             "password":password
         }
         store.userLogin(param,(data)=>{
-            let user = {
-                "name":userName,
-                'id':data.data.id,
-                'type':data.data.type
-            }
-            localforage.setItem("ua",user);
+            data.name = userName;
+            localforage.setItem("ua",data);
             $("#root").removeClass("b-login");
             window.location.hash='#/a/userList'
         });
