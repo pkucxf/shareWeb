@@ -1410,4 +1410,19 @@ p.error {
 .share-my .share-user .share-user-button button {
   width: 100px;
 }
+.share-my .share-order-list {
+  width: 100%;
+  padding: 5px;
+  border-bottom: 1px dashed #c5c5c5;
+  height: 130px;
+}
+.share-my .share-order-list .share-order-list-left {
+  width: 200px;
+}
+.share-my .share-order-list .share-order-list-left img {
+  width: 90%;
+}
+.share-my .share-order-list .share-order-list-right {
+  width: 680px;
+}
 /*# sourceMappingURL=share.css.map */

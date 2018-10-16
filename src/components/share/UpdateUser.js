@@ -91,9 +91,9 @@ export default class UpdateUser extends React.Component {
     }
 
     handlerSubmit = () =>{
-        this.validation();
-        this.hasLogin(
+            this.hasLogin(
             ()=>{
+                this.validation();
                 let param  = this.state.param;
                 let json = {
                     userId:this.state.user.userId,
