@@ -24,11 +24,11 @@ export default class  shareAdminStore{
                         callback(data)
                     }
                 } else {
-                    that.globalStore.showError(data.msg ? data.msg : "登陆失败，账户或密码错误")
+                    that.globalStore.showTipsModal(data.msg ? data.msg : "登陆失败，账户或密码错误")
                 }
             },
             error: (xhr, status, err) => {
-                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+                this.globalStore.showTipsModal('登陆失败，账户或密码错误' + err.toString());
             }
         })
     }
@@ -49,11 +49,11 @@ export default class  shareAdminStore{
                         callback(data.data)
                     }
                 } else {
-                    that.globalStore.showError(data.error ? data.error : "查询失败")
+                    that.globalStore.showTipsModal(data.error ? data.error : "查询失败")
                 }
             },
             error: (xhr, status, err) => {
-                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+                this.globalStore.showTipsModal('数据请求失败,错误信息:' + err.toString());
             }
         })
     }
@@ -73,11 +73,11 @@ export default class  shareAdminStore{
                     }
 
                 } else {
-                    that.globalStore.showError(data.error ? data.error : "操作失败")
+                    that.globalStore.showTipsModal(data.error ? data.error : "操作失败")
                 }
             },
             error: (xhr, status, err) => {
-                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+                this.globalStore.showTipsModal('数据请求失败,错误信息:' + err.toString());
             }
         })
     }
@@ -99,11 +99,11 @@ export default class  shareAdminStore{
                     }
                     that.globalStore.showInfo("修改成功！")
                 } else {
-                    that.globalStore.showError(data.error ? data.error : "操作失败")
+                    that.globalStore.showTipsModal(data.error ? data.error : "操作失败")
                 }
             },
             error: (xhr, status, err) => {
-                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+                this.globalStore.showTipsModal('数据请求失败,错误信息:' + err.toString());
             }
         })
 
@@ -128,11 +128,11 @@ export default class  shareAdminStore{
                     }
 
                 } else {
-                    that.globalStore.showError(data.error ? data.error : "查询失败")
+                    that.globalStore.showTipsModal(data.error ? data.error : "查询失败")
                 }
             },
             error: (xhr, status, err) => {
-                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+                this.globalStore.showTipsModal('数据请求失败,错误信息:' + err.toString());
             }
         })
     }
@@ -153,11 +153,11 @@ export default class  shareAdminStore{
                     }
                     that.globalStore.showInfo("保存成功！")
                 } else {
-                    that.globalStore.showError(data.error ? data.error : "操作失败")
+                    that.globalStore.showTipsModal(data.error ? data.error : "操作失败")
                 }
             },
             error: (xhr, status, err) => {
-                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+                this.globalStore.showTipsModal('数据请求失败,错误信息:' + err.toString());
             }
         })
 
@@ -178,11 +178,11 @@ export default class  shareAdminStore{
                     }
 
                 } else {
-                    that.globalStore.showError(data.error ? data.error : "操作失败")
+                    that.globalStore.showTipsModal(data.error ? data.error : "操作失败")
                 }
             },
             error: (xhr, status, err) => {
-                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+                this.globalStore.showTipsModal('数据请求失败,错误信息:' + err.toString());
             }
         })
     }
@@ -202,11 +202,11 @@ export default class  shareAdminStore{
                     }
                     that.globalStore.showInfo("修改成功！")
                 } else {
-                    that.globalStore.showError(data.error ? data.error : "操作失败")
+                    that.globalStore.showTipsModal(data.error ? data.error : "操作失败")
                 }
             },
             error: (xhr, status, err) => {
-                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+                this.globalStore.showTipsModal('数据请求失败,错误信息:' + err.toString());
             }
         })
 
@@ -227,11 +227,11 @@ export default class  shareAdminStore{
                     }
 
                 } else {
-                    that.globalStore.showError(data.error ? data.error : "查询失败")
+                    that.globalStore.showTipsModal(data.error ? data.error : "查询失败")
                 }
             },
             error: (xhr, status, err) => {
-                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+                this.globalStore.showTipsModal('数据请求失败,错误信息:' + err.toString());
             }
         })
     }
@@ -252,11 +252,11 @@ export default class  shareAdminStore{
                     }
                     that.globalStore.showInfo("保存成功！")
                 } else {
-                    that.globalStore.showError(data.error ? data.error : "操作失败")
+                    that.globalStore.showTipsModal(data.error ? data.error : "操作失败")
                 }
             },
             error: (xhr, status, err) => {
-                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+                this.globalStore.showTipsModal('数据请求失败,错误信息:' + err.toString());
             }
         })
     }
@@ -275,11 +275,11 @@ export default class  shareAdminStore{
                     }
 
                 } else {
-                    that.globalStore.showError(data.error ? data.error : "操作失败")
+                    that.globalStore.showTipsModal(data.error ? data.error : "操作失败")
                 }
             },
             error: (xhr, status, err) => {
-                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+                this.globalStore.showTipsModal('数据请求失败,错误信息:' + err.toString());
             }
         })
     }
@@ -300,11 +300,11 @@ export default class  shareAdminStore{
                     }
 
                 } else {
-                    that.globalStore.showError(data.error ? data.error : "查询失败")
+                    that.globalStore.showTipsModal(data.error ? data.error : "查询失败")
                 }
             },
             error: (xhr, status, err) => {
-                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+                this.globalStore.showTipsModal('数据请求失败,错误信息:' + err.toString());
             }
         })
     }
@@ -325,11 +325,11 @@ export default class  shareAdminStore{
                     }
                     that.globalStore.showInfo("保存成功！")
                 } else {
-                    that.globalStore.showError(data.error ? data.error : "操作失败")
+                    that.globalStore.showTipsModal(data.error ? data.error : "操作失败")
                 }
             },
             error: (xhr, status, err) => {
-                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+                this.globalStore.showTipsModal('数据请求失败,错误信息:' + err.toString());
             }
         })
 
@@ -351,11 +351,11 @@ export default class  shareAdminStore{
                     }
 
                 } else {
-                    that.globalStore.showError(data.error ? data.error : "查询失败")
+                    that.globalStore.showTipsModal(data.error ? data.error : "查询失败")
                 }
             },
             error: (xhr, status, err) => {
-                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+                this.globalStore.showTipsModal('数据请求失败,错误信息:' + err.toString());
             }
         })
     }
@@ -374,11 +374,11 @@ export default class  shareAdminStore{
                         callback(data.data)
                     }
                 } else {
-                    that.globalStore.showError(data.error ? data.error : "查询失败")
+                    that.globalStore.showTipsModal(data.error ? data.error : "查询失败")
                 }
             },
             error: (xhr, status, err) => {
-                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+                this.globalStore.showTipsModal('数据请求失败,错误信息:' + err.toString());
             }
         })
     }
@@ -399,11 +399,11 @@ export default class  shareAdminStore{
                     }
                     that.globalStore.showInfo("保存成功！")
                 } else {
-                    that.globalStore.showError(data.error ? data.error : "操作失败")
+                    that.globalStore.showTipsModal(data.error ? data.error : "操作失败")
                 }
             },
             error: (xhr, status, err) => {
-                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+                this.globalStore.showTipsModal('数据请求失败,错误信息:' + err.toString());
             }
         })
     }
@@ -423,11 +423,11 @@ export default class  shareAdminStore{
                     }
 
                 } else {
-                    that.globalStore.showError(data.error ? data.error : "操作失败")
+                    that.globalStore.showTipsModal(data.error ? data.error : "操作失败")
                 }
             },
             error: (xhr, status, err) => {
-                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+                this.globalStore.showTipsModal('数据请求失败,错误信息:' + err.toString());
             }
         })
     }
@@ -446,11 +446,11 @@ export default class  shareAdminStore{
                         callback(data.data)
                     }
                 } else {
-                    that.globalStore.showError(data.error ? data.error : "查询失败")
+                    that.globalStore.showTipsModal(data.error ? data.error : "查询失败")
                 }
             },
             error: (xhr, status, err) => {
-                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+                this.globalStore.showTipsModal('数据请求失败,错误信息:' + err.toString());
             }
         })
     }
@@ -469,11 +469,11 @@ export default class  shareAdminStore{
                         callback(data.data)
                     }
                 } else {
-                    that.globalStore.showError(data.error ? data.error : "查询失败")
+                    that.globalStore.showTipsModal(data.error ? data.error : "查询失败")
                 }
             },
             error: (xhr, status, err) => {
-                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+                this.globalStore.showTipsModal('数据请求失败,错误信息:' + err.toString());
             }
         })
     }
@@ -492,11 +492,11 @@ export default class  shareAdminStore{
                         callback(data.data)
                     }
                 } else {
-                    that.globalStore.showError(data.error ? data.error : "查询失败")
+                    that.globalStore.showTipsModal(data.error ? data.error : "查询失败")
                 }
             },
             error: (xhr, status, err) => {
-                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+                this.globalStore.showTipsModal('数据请求失败,错误信息:' + err.toString());
             }
         })
     }

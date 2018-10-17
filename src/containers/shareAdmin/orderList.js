@@ -40,7 +40,6 @@ export default class orderList extends React.Component {
                     window.location.href= '#/a/login'
                 })
             }else{
-
                 this.setState({user:data},()=>{
                     this.initTable()
                 })
@@ -52,8 +51,8 @@ export default class orderList extends React.Component {
     initTable = () =>{
         let user = this.state.user ;
         let param= {
-            userId:user.id,
-            userType:user.type,
+            userId:user.data.id,
+            userType:user.data.type,
             payStatu:this.state.active
         }
         adminStore.getOrderList(param,(res)=>{
@@ -145,7 +144,7 @@ export default class orderList extends React.Component {
                                     </div>
                                 </div>
                             )
-                        }):""}
+                        }):"暂无数据"}
 
                     </div>
                 </div>

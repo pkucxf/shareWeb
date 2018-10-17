@@ -97,7 +97,11 @@ export default class Login extends React.Component {
             data.name = userName;
             localforage.setItem("ua",data);
             $("#root").removeClass("b-login");
-            window.location.hash='#/a/userList'
+            if(data.userType == 1){
+                window.location.hash='#/a/userList';
+            }else{
+                window.location.hash='#/a/order';
+            }
         });
 
     }

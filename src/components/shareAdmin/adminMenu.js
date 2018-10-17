@@ -17,26 +17,50 @@ export default class carType extends React.Component {
                 {id:2,name:'店铺管理',href:'storeList'},
                 {id:3,name:'店铺车辆管理',href:'storeAndCar'},
                 {id:4,name:'订单管理',href:'order'},
-            ]
+            ],
+            sign:true ,
         }
     }
 
     componentWillMount =()=>{
+        this.getLimit();
         globalStore.hideAlert();
 
     }
-    changeMenu = (param,name) =>{
-       // this.props.changeMenu(param,name);
+    getLimit = () =>{
+        localforage.getItem("ua").then((data)=>{
+            if(!data || JSON.stringify(data) === '{}'){
+                globalStore.showTipsModal("请重新登录","","",()=>{
+                    window.location.href = "#/a/login";
+                })
+                return ;
+            }
+            if(data.data.type == 0){
+                this.setState({
+                    sign:false
+                })
+            }
+        })
     }
 
     render(){
+        let sign = this.state.sign ;
         return(
             <div className="share-admin-menu">
                 <ul>
                     {this.state.menu.map((m,n)=>{
-                        return (
-                            <li key={n} title={m.name} className={this.props.menu == m.id ? "active":""} onClick={this.changeMenu.bind(this,m.id,m.name)} ><a href ={"#/a/"+m.href}><i className="glyphicon glyphicon-tasks mr10"></i>{m.name}</a></li>
-                        )
+                        if(!sign){
+                            if(m.id == 4){
+                                return (
+                                    <li key={n} title={m.name} className={this.props.menu == m.id ? "active":""}  ><a href ={"#/a/"+m.href}><i className="glyphicon glyphicon-tasks mr10"></i>{m.name}</a></li>
+                                )
+                            }
+                        }else{
+                            return (
+                                <li key={n} title={m.name} className={this.props.menu == m.id ? "active":""} ><a href ={"#/a/"+m.href}><i className="glyphicon glyphicon-tasks mr10"></i>{m.name}</a></li>
+                            )
+                        }
+
                     })}
 
                 </ul>
