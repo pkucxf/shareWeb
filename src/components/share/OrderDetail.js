@@ -42,14 +42,10 @@ export default class OrderDetail extends React.Component {
 
     handleLogin = (callback) =>{
         localforage.getItem("u").then((user)=>{
-            if(user){
-                this.setState({user},()=>{
-                    if(typeof callback == "function")
-                        callback();
-                })
-            }else{
-                this.setState({user:{}})
-            }
+            this.setState({user:user},()=>{
+                if(typeof callback == "function")
+                    callback();
+            })
         });
     }
 
@@ -105,7 +101,7 @@ export default class OrderDetail extends React.Component {
 
     handleSubmit = () =>{
         let startDate = this.state.startDateFormat , endDate = this.state.endDateFormat ;
-        let carInfo = this.state.carInfo, storeInfo  = this.state.storeInfo ;
+        let carInfo = this.state.carInfo, storeInfo  = this.state.storeInfo ,orderTotal = this.state.orderTotal  ;
         let carDay = this.state.carDay ;
 
         if(carDay == 0 || this.state.orderTotal == 0){
@@ -115,12 +111,12 @@ export default class OrderDetail extends React.Component {
         let user = {}
         this.handleLogin(()=>{
             user = this.state.user ;
-            if(JSON.stringify(user) === '{}'){
+            if(JSON.stringify(user) === '{}' || user=="" || !user ||user.id ==""){
                 globalStore.showTipsModal("请您先登录","small")
                 return ;
             }
-            if(user.id ==""){
-                globalStore.showTipsModal("请您先登录","small")
+            if(orderTotal == 0  ){
+                globalStore.showTipsModal("您的租赁日期不足一天，无法生成订单","small");
                 return ;
             }
 
@@ -130,7 +126,7 @@ export default class OrderDetail extends React.Component {
                 storeId:storeInfo.storeId,
                 startTime:startDate,
                 endTime:endDate,
-                orderMoney:this.state.orderTotal,
+                orderMoney:orderTotal,
                 orderTime:new Date().getTime(),
                 day:this.state.carDay
             }

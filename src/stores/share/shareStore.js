@@ -300,12 +300,12 @@ export default class  adminManageStore{
     }
 
     // 获取订单列表
-    @action getOrder(userId,callback){
+    @action getOrder(userId,payStatu,callback){
         this.globalStore.hideAlert();
         let that = this ;
         $.ajax({
             type: "GET",
-            url: Config.share.getOrderList + "?userId=" + userId ,
+            url: Config.share.getOrderList + "?userId=" + userId + "&payStatu=" + payStatu,
             dataType: "json",
             contentType: "application/json",
             success: data => {

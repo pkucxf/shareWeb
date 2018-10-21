@@ -38,9 +38,7 @@
 ![image](https://github.com/webchenli/base/tree/master/src/assets/1510493808.png)
 ****
 ****
-author: only
-
-email: 776268047@qq.com
+author: cxf
 
 version:v0.1
 ****
