@@ -5,6 +5,7 @@ import _ from  'lodash';
 import Util from '../../common/utils';
 import {Button,Modal} from 'react-bootstrap';
 import Top from '../../components/share/Top';
+import Nav from '../../components/share/Nav';
 import Foot from '../../components/share/Foot';
 import OrderDetail from '../../components/share/OrderDetail';
 
@@ -27,8 +28,7 @@ export default class Order extends React.Component {
     render(){
         return(
             <div className="share-box">
-                <Top/>
-
+                <Nav nav={1}/>
                 <OrderDetail routerParam = { this.props.router.params} />
                 <Foot/>
 
