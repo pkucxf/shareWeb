@@ -44,7 +44,7 @@ export default class  adminManageStore{
             data: JSON.stringify(param),
             contentType: "application/json",
             success: data => {
-                if (data.code == 0 ) {
+                if (data.code == 0 && data.data == 0) {
                     this.userRegResult = Object.assign({},data)
                     if (typeof callback == "function") {
                         callback(data.data);

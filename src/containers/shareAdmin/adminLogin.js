@@ -7,6 +7,8 @@ import {Button,Modal} from 'react-bootstrap';
 import shareAdminStore from '../../stores/share/shareAdminStore';
 import localforage from 'localforage';
 const store = new shareAdminStore();
+import base64Enc  from '../../common/base64Enc';
+
 @observer
 export default class Login extends React.Component {
     constructor(props) {
@@ -91,7 +93,7 @@ export default class Login extends React.Component {
         }
         let param = {
             "userName":userName,
-            "password":password
+            "password":base64Enc.encode64(password)||''
         }
         store.userLogin(param,(data)=>{
             data.name = userName;

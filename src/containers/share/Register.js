@@ -9,7 +9,7 @@ import Top from '../../components/share/Top';
 import ShareStore  from '../../stores/share/shareStore';
 const store = new ShareStore();
 import tips  from '../../common/tips';
-
+import base64Enc  from '../../common/base64Enc';
 @observer
 export default class Register extends React.Component {
     constructor(props) {
@@ -90,7 +90,7 @@ export default class Register extends React.Component {
         }
         let param ={
             name:registerParam.name ||'',
-            password:registerParam.password||'',
+            password:base64Enc.encode64(registerParam.password)||'',
             email:registerParam.email||'',
             phone:registerParam.phone||'',
             sendAddress0:registerParam.address||''

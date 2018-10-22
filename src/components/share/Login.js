@@ -5,9 +5,10 @@ import _ from  'lodash';
 import Util from '../../common/utils';
 import {Button,Modal} from 'react-bootstrap';
 import localforage from 'localforage';
-
+// import encryption from '../../common/encryption'
 import ShareStore  from '../../stores/share/shareStore';
 const store = new ShareStore();
+import base64Enc  from '../../common/base64Enc';
 
 @observer
 export default class Login extends React.Component {
@@ -36,11 +37,15 @@ export default class Login extends React.Component {
         })
 
     }
+
+
+
+
     handleLogin =()=>{
         let loginParam = this.state.loginParam;
         let param ={
             name:loginParam.name ||'',
-            password:loginParam.password||''
+            password:base64Enc.encode64(loginParam.password)||''
         }
 
         store.userLogin(param,(data)=>{

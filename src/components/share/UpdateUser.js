@@ -5,6 +5,7 @@ import ShareStore  from '../../stores/share/shareStore';
 const  store = new ShareStore();
 import  tips from '../../common/tips';
 import localforage from 'localforage';
+import base64Enc  from '../../common/base64Enc';
 @observer
 export default class UpdateUser extends React.Component {
     constructor(props) {
@@ -97,8 +98,8 @@ export default class UpdateUser extends React.Component {
                 let param  = this.state.param;
                 let json = {
                     userId:this.state.user.userId,
-                    password:param.password,
-                    newPassword:param.newPassword
+                    password:base64Enc.encode64(param.password),
+                    newPassword:base64Enc.encode64(param.newPassword)
                 };
                 store.updatePassword(json,(data)=>{
                     if(data == 0){
