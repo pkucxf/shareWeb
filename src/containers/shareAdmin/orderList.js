@@ -53,7 +53,8 @@ export default class orderList extends React.Component {
         let param= {
             userId:user.data.id,
             userType:user.data.type,
-            payStatu:this.state.active
+            payStatu:this.state.active,
+            storePhone:this.state.user.name
         }
         adminStore.getOrderList(param,(res)=>{
             this.setState({

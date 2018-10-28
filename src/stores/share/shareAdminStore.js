@@ -438,7 +438,8 @@ export default class  shareAdminStore{
         let that = this ;
         $.ajax({
             type: "GET",
-            url:Config.shareAdmin.getOrderList + '?userId='+ param.userId + "&userType="+param.userType + "&payStatu=" +param.payStatu,
+            url:Config.shareAdmin.getOrderList + '?userId='+ param.userId + "&userType="+param.userType
+                + "&payStatu=" +param.payStatu +  "&storePhone="+ param.storePhone,
             contentType: "application/json",
             success: data => {
                 if (data.code == 0 ) {
